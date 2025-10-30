@@ -1,0 +1,205 @@
+<div class="main">
+  <p-breadcrumb class="breadcrumb" [model]="breadcrumbItems"></p-breadcrumb>
+  <div class="row">
+      <div class="col-md-4">
+        <div class="card card-user">
+          <div class="image">
+            <div class="user-image">
+              @if (imageUrl){
+                <img [src]="imageUrl" alt="profile photo hey"/>
+              }
+              @else if(previewUrl){
+                <img [src]="previewUrl" alt="Preview">
+              }
+              @else {
+                {{user.firstname[0]}}{{user.lastname[0]}}
+              }
+              <div class="camera-icon" (click)="triggerFileInput()">
+                <mat-icon svgIcon="camera" aria-hidden="false" class="camera"></mat-icon>
+              </div>
+              <!-- Hidden file input -->
+              <input type="file" #fileInput (change)="onFileSelected($event)" accept="image/*" class="file-input" />
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="button-container">
+              <div class="row">
+                <div class="col-lg-3 col-md-6 col-6 ml-auto">
+                  <h5>70
+                    <br>
+                    <small>Tasks</small>
+                  </h5>
+                </div>
+                <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
+                  <h5>50
+                    <br>
+                    <small>Completed</small>
+                  </h5>
+                </div>
+                <div class="col-lg-3 mr-auto">
+                  <h5>24
+                    <br>
+                    <small>Events</small>
+                  </h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">Recent Activities</h4>
+          </div>
+          <div class="card-body">
+            <ul class="list-unstyled team-members">
+              <li>
+                <div class="row">
+                  <div class="col-md-2 col-2">
+                    <div class="avatar">
+                      <img src="assets/img/faces/ayo-ogunseinde-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                    </div>
+                  </div>
+                  <div class="col-md-7 col-7">
+                    DJ Khaled
+                    <br />
+                    <span class="text-muted">
+                      <small>Offline</small>
+                    </span>
+                  </div>
+                  <div class="col-md-3 col-3 text-right">
+                    <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="row">
+                  <div class="col-md-2 col-2">
+                    <div class="avatar">
+                      <img src="assets/img/faces/joe-gardner-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                    </div>
+                  </div>
+                  <div class="col-md-7 col-7">
+                    Creative Tim
+                    <br />
+                    <span class="text-success">
+                      <small>Available</small>
+                    </span>
+                  </div>
+                  <div class="col-md-3 col-3 text-right">
+                    <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="row">
+                  <div class="col-md-2 col-2">
+                    <div class="avatar">
+                      <img src="assets/img/faces/clem-onojeghuo-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                    </div>
+                  </div>
+                  <div class="col-ms-7 col-7">
+                    Flume
+                    <br />
+                    <span class="text-danger">
+                      <small>Busy</small>
+                    </span>
+                  </div>
+                  <div class="col-md-3 col-3 text-right">
+                    <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div> -->
+      </div>
+      <div class="col-md-8">
+        <div class="card card-user">
+          <div class="card-header">
+            <h5 class="card-title">{{user.firstname}} {{user.lastname}}</h5>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+              <div class="row">
+                <div class="col-md-6 pr-1">
+                  <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" class="form-control" placeholder="First Name" formControlName="firstname">
+                  </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                  <div class="form-group">
+                    <label>Last Name</label>
+                    <input type="text" class="form-control" placeholder="Last Name" formControlName="lastname">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 pr-1">
+                  <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" class="form-control" placeholder="email" formControlName="email">
+                  </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                  <div class="form-group">
+                    <label>Password</label>
+                    <div>
+                      <p-password
+                       class="field" 
+                       placeholder="password" 
+                       formControlName="password" 
+                       [class.ng-dirty] = "profileForm.get('password')?.touched"
+                       weakLabel="Too simple" 
+                       mediumLabel="Average complexity" 
+                       strongLabel="Complex password"
+                       [toggleMask]="true" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 pr-1">
+                  <div class="form-group">
+                    <label>Date Of Birth</label>
+                    <div>
+                      <p-calendar 
+                      class="field" 
+                      formControlName="dob" 
+                      dateFormat="yy-mm-dd" 
+                      [iconDisplay]="'input'" 
+                      [showIcon]="true" 
+                      [class.ng-dirty] = "profileForm.get('dob')?.touched"
+                      inputId="icondisplay"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                  <div class="form-group">
+                    <label>Role</label>
+                    <div>
+                      <p-dropdown class="field" [options]="['ADMIN', 'USER']" placeholder="Select a role" formControlName="role"></p-dropdown>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <mat-checkbox class="check" formControlName="enabled">Account enabled</mat-checkbox>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="update ml-auto mr-auto">
+                  <button type="submit" class="btn btn-primary btn-round">Update Profile</button>
+                </div>
+              </div>
+            </form>            
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+  

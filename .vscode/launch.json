@@ -1,0 +1,98 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "TaskManagementServiceApplication",
+            "request": "launch",
+            "mainClass": "org.crm.student.task_management_service.TaskManagementServiceApplication"
+        },
+        {
+            "type": "java",
+            "name": "NotificationServiceApplication",
+            "request": "launch",
+            "mainClass": "org.crm.student.notification_service.NotificationServiceApplication"
+        },
+        {
+            "type": "java",
+            "name": "AuthApi1Application",
+            "request": "launch",
+            "mainClass": "com.crm.authservice.auth_api1.AuthApi1Application",
+            "projectName": "Auth_Api1",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=57302 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=Auth_Api1"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ServiceDiscoveryApplication<service-discovery>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.codingworld.servicediscovery.ServiceDiscoveryApplication",
+            "projectName": "service-discovery",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=57246 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=service-discovery"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ApiGatewayApplication<api-gateway>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.telusko.apigateway.ApiGatewayApplication",
+            "projectName": "api-gateway",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=54337 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=api-gateway"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ApplicationManagementServiceApplication<Application_Management_Service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "org.crm.student.application_management_service.ApplicationManagementServiceApplication",
+            "projectName": "Application_Management_Service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=57276 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=Application_Management_Service"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-AuthApi1Application<Auth_Api1>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.crm.authservice.auth_api1.AuthApi1Application",
+            "projectName": "Auth_Api1",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-NotificationServiceApplication<Notification_Service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "org.crm.student.notification_service.NotificationServiceApplication",
+            "projectName": "Notification_Service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-EventManagementSystemApplication<Event_Management_System>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.crm.event_management_system.EventManagementSystemApplication",
+            "projectName": "Event_Management_System",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-TaskManagementServiceApplication<Task_Management_Service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "org.crm.student.task_management_service.TaskManagementServiceApplication",
+            "projectName": "Task_Management_Service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

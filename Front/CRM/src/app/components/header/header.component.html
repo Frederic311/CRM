@@ -1,0 +1,68 @@
+<header>
+    <input class="inter-regular" type="search" name="search" id="search" placeholder="Search">
+    <mat-icon class="search" svgIcon="search" aria-hidden="false" (click)="Clicked()"></mat-icon>
+    <div class="notifications">
+        <mat-icon
+            aria-hidden="false"
+            matBadge="4"
+            svgIcon="notification">
+        </mat-icon>
+        <span class="inter-medium">Notifications</span>
+    </div>
+    <button class="seconde-btn">
+        <mat-icon svgIcon="add" aria-hidden="false" class="add"></mat-icon>
+        <p class="inter-regular" (click)="navigateToEvent()">Add event</p>
+    </button>
+    <button class="prime-btn" (click)="openModal()">
+        <mat-icon svgIcon="add" aria-hidden="false" class="add"></mat-icon>
+        <p class="inter-regular">Create user</p>
+    </button>
+    <div class="user-profile">
+        <div class="user-image inter-medium">
+            @if (user.profilePhoto!=null) {
+                <img [src]="imageUrl" alt="User Profile">
+            }
+            @else {
+                {{user.firstname[0]}}{{user.lastname[0]}}
+            }
+        </div>
+        <div>
+            <h4 class="username inter-medium">{{user.firstname}} {{user.lastname[0]}}</h4>
+            <p class="email inter-regular">{{user.email}}</p>
+        </div>
+        <mat-icon svgIcon="dropdown" aria-hidden="false"></mat-icon>
+    </div>
+</header>
+<div class="header-shadow"></div>
+@if (openForm) {
+    <div class="overlay" (click)="closeForm()"></div>
+    <div class="form">
+        <span class="close-button" (click)="closeForm()">&times;</span>
+        <div class="innerform">
+            <h2 class="inter-semi-bold">Add a New User</h2>
+            <form [formGroup]="createUserForm">
+                <input class="inter-regular" formControlName="firstname" type="text" name="firstname" id="firstname" placeholder="firstname">
+                <input class="inter-regular" formControlName="lastname" type="text" name="lastname" id="lastname" placeholder="lastname">
+                <input class="inter-regular" formControlName="email" type="email" name="email" id="email" placeholder="email">
+                <div formGroupName="role">
+                    <p-dropdown
+                    [options]="['ADMIN','USER']"
+                    formControlName="roleName"
+                    placeholder="Select a role" />
+                </div>
+                <mat-checkbox formControlName="enabled">Account enabled</mat-checkbox>
+                <div class="buttons">
+                    <button class="inter-regular" type="button"  (click)="closeForm()">cancel</button>
+                    <button class="inter-regular" [disabled]="!createUserForm.valid" type="button" (click)="newUser()">save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+}
+
+<app-success [message]="validMessage"></app-success>
+
+<!-- Spinner -->
+<div *ngIf="loading" class="spinner-overlay">
+    <div class="spinner"></div>
+</div>

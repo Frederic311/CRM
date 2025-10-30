@@ -1,0 +1,71 @@
+<div class="container">
+    <h1>Candidates ({{candidates.length}})</h1>
+    <div class="buttons-top container">
+        <button type="button" class="tertiary-btn">
+            <i class="pi pi-list"></i>
+        </button>
+        <button type="button" class="tertiary-btn">
+            <i class="pi pi-download"></i>
+        </button>
+        <div class="filter">
+            <p-dropdown
+            [options]="filters"
+            optionLabel="name"
+            [formControl]="filter"
+            placeholder="Filter" />
+        </div>
+        <button [routerLink]="['/candidates/new']" type="button" class="prime-btn">Add new Candidate</button>
+    </div>
+</div>
+
+<!-- New Confirm Delete Dialog -->
+<ng-template #confirmDeleteDialog let-dialogRef>
+    <h2 mat-dialog-title class="custom-dialog-title">Confirm Delete</h2>
+    <div mat-dialog-content class="custom-dialog-content">Are you sure you want to delete this candidate?</div>
+    <div mat-dialog-actions class="custom-dialog-actions">
+      <button mat-button class="custom-dialog-button-no" (click)="ondelnoClick()">Cancel</button>
+      <button mat-button class="custom-dialog-button-yes" (click)="onyesdelClick()">Delete</button>
+    </div>
+  </ng-template>
+
+  <p-toast></p-toast>
+
+<div class="table-container">
+    <div class="table">
+        <table>
+            <thead>
+                <tr>
+                    <th><mat-checkbox></mat-checkbox></th>
+                    <th class="inter-regular">Name</th>
+                    <th class="inter-regular">Email</th>
+                    <th class="inter-regular">Phone</th>
+                    <th class="inter-regular">Status</th>
+                    <th class="inter-regular">Application Date</th>
+                    <th class="inter-regular">Field</th>
+                    <th class="inter-regular">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <p-toast />
+                <p-confirmDialog />
+                @for (candidate of candidates | candidateFilter | candidateFilter : selectedFilter: null : (selectedFilter ? false : true); track $index) {
+                    <tr>
+                        <td><mat-checkbox></mat-checkbox></td>
+                        <td style="max-width: 210px;" class="inter-semi-bold">{{candidate.firstName}} {{candidate.lastName}}</td>
+                        <td>{{candidate.email}}</td>
+                        <td>{{candidate.phoneNumber}}</td>
+                        <td><span [class.student]="candidate.status==='STUDENT'" [class.new]="candidate.status==='NEW'" [class.negotiate]="candidate.status==='NEGOTIATION'" [class.qualified]="candidate.status==='QUALIFIED'">
+                            {{candidate.status}}</span></td>
+                        <td>{{candidate.applicationDate}}</td>
+                        <td>{{candidate.field}}</td>
+                        <td class="icons">
+                            <mat-icon class="view" svgIcon="view" (click)="viewCandidate(candidate.id ?? '')"></mat-icon>
+                            <mat-icon class="edit" svgIcon="edit" (click)="editCandidate(candidate.id ?? '')"></mat-icon>
+                            <mat-icon class="delete" svgIcon="delete" (click)="confirmDelete($event,candidate)"></mat-icon>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

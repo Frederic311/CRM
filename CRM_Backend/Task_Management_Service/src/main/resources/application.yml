@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: task-service
+    config:
+      import: "optional:configserver:http://localhost:8088"
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/task
+    username: root
+    password: "0000"
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  cloud:
+    loadbalancer:
+      enabled: true
+
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+server:
+  port: 8084
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+
+
+
+# Custom path for uploaded files
+

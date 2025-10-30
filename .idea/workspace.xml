@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="eb69774e-8812-4f82-a18b-c6eef7ac3307" name="Changes" comment="solve merge conflit">
+      <change afterPath="$PROJECT_DIR$/uploads/Setting up CICD en.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CRM_Backend/Student_Management_Service/src/main/java/org/crm/student/application_management_service/service/CandidateService.java" beforeDir="false" afterPath="$PROJECT_DIR$/CRM_Backend/Student_Management_Service/src/main/java/org/crm/student/application_management_service/service/CandidateService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CRM_Backend/Student_Management_Service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/CRM_Backend/Student_Management_Service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CRM_Backend/Task_Management_Service/src/main/java/org/crm/student/task_management_service/Controller/TaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/CRM_Backend/Task_Management_Service/src/main/java/org/crm/student/task_management_service/Controller/TaskController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CRM_Backend/Task_Management_Service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/CRM_Backend/Task_Management_Service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CRM_Backend/auth-service/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/CRM_Backend/auth-service/src/main/resources/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front/CRM/src/app/services/task/task.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Front/CRM/src/app/services/task/task.service.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/CRM_Backend/Event_Management">
+      <ProjectState>
+        <option name="isInclusion" value="true" />
+      </ProjectState>
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$/CRM_Backend/Event_Management">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Event_Management" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="kamdem" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+  </component>
+  <component name="GitLabMergeRequestFiltersHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPENED&quot;,
+    &quot;assignee&quot;: {
+      &quot;type&quot;: &quot;org.jetbrains.plugins.gitlab.mergerequest.ui.filters.GitLabMergeRequestsFiltersValue.MergeRequestsMemberFilterValue.MergeRequestsAssigneeFilterValue&quot;,
+      &quot;username&quot;: &quot;project_61926215_bot_c20f90a97a721bb2ce352b49b8d8702b&quot;,
+      &quot;fullname&quot;: &quot;anthonytoken&quot;
+    }
+  }
+}</component>
+  <component name="GitLabMergeRequestsSettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;first&quot;: &quot;https://gitlab.com/Anthony-Feudjio/isj-isi4en-crm-group3.git&quot;,
+    &quot;second&quot;: &quot;5c5d8b3e-a83f-46af-8941-07649decf0ad&quot;
+  }
+}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2o480vSwFJ0a3Ikd78jHyf64huD" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.ApiGatewayApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ServiceDiscoveryApplication.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #4.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Event_Management_System [clean].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.ApiGatewayApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ApplicationManagementServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.AuthApi1Application.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.EventManagementSystemApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.NotificationServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ServiceDiscoveryApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.TaskManagementServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/GUY/Desktop/School_Project/CRM/isj-isi4en-crm-group3/CRM_Backend/Notification_Service/src/main/resources/templates&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\GUY\\Desktop\\School_Project\\CRM\\isj-isi4en-crm-group3\\Front\\CRM\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.crm.student.application_management_service.service" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\GUY\Desktop\School_Project\CRM\isj-isi4en-crm-group3\CRM_Backend\Notification_Service\src\main\resources\templates" />
+      <recent name="C:\Users\GUY\Desktop\School_Project\CRM\isj-isi4en-crm-group3\Front\CRM\src" />
+      <recent name="C:\Users\HP\IdeaProjects\isj-isi4en-crm-group3\CRM_Backend\Student_Management_Service\src\main\java\org\crm\student\application_management_service" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\GUY\Desktop\School_Project\CRM\isj-isi4en-crm-group3\Front\CRM" />
+      <recent name="C:\Users\HP\IdeaProjects\isj-isi4en-crm-group3\CRM_Backend\auth-service\src\main\resources\static" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.crm.student.task_management_service.Service" />
+      <recent name="org.crm.student.task_management_service.config" />
+      <recent name="com.crm.authservice.auth_api1.Repository" />
+      <recent name="com.crm.authservice.auth_api1.Service" />
+      <recent name="com.crm.authservice.auth_api1.models" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="Application" />
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.ApplicationManagementServiceApplication">
+    <configuration name="ApiGatewayApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.telusko.apigateway.ApiGatewayApplication" />
+      <module name="api-gateway" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.telusko.apigateway.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AuthApi1Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.crm.authservice.auth_api1.AuthApi1Application" />
+      <module name="Auth_Api1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.crm.authservice.auth_api1.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServiceDiscoveryApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.codingworld.servicediscovery.ServiceDiscoveryApplication" />
+      <module name="service-discovery" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.codingworld.servicediscovery.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="generated-requests | #4" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="4" requestIdentifier="#4" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="api-gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.telusko.apigateway.ApiGatewayApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ApplicationManagementServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="Application_Management_Service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.crm.student.application_management_service.ApplicationManagementServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AuthApi1Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="Auth_Api1" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.crm.authservice.auth_api1.AuthApi1Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EventManagementSystemApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="Event_Management_System" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.crm.event_management_system.EventManagementSystemApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NotificationServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="Notification_Service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.crm.student.notification_service.NotificationServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServiceDiscoveryApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="service-discovery" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.codingworld.servicediscovery.ServiceDiscoveryApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TaskManagementServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="Task_Management_Service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.crm.student.task_management_service.TaskManagementServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="HTTP Request.generated-requests | #4" />
+        <item itemvalue="Application.ServiceDiscoveryApplication" />
+        <item itemvalue="Application.AuthApi1Application" />
+        <item itemvalue="Application.ApiGatewayApplication" />
+        <item itemvalue="Application.ApiGatewayApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4" />
+        <option value="jdk-22-openjdk-22-4caba194b151-f504ca98" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="eb69774e-8812-4f82-a18b-c6eef7ac3307" name="Changes" comment="" />
+      <created>1730117273779</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1730117273779</updated>
+      <workItem from="1730117278989" duration="776000" />
+      <workItem from="1730230656818" duration="28000" />
+      <workItem from="1730253155929" duration="48000" />
+      <workItem from="1730550208214" duration="1099000" />
+      <workItem from="1730572484817" duration="8130000" />
+      <workItem from="1730971582940" duration="3005000" />
+      <workItem from="1730983553944" duration="1419000" />
+      <workItem from="1731070438509" duration="5459000" />
+      <workItem from="1731078356674" duration="675000" />
+      <workItem from="1731093709736" duration="3492000" />
+      <workItem from="1731146000723" duration="866000" />
+      <workItem from="1731174513320" duration="210000" />
+      <workItem from="1731954862809" duration="1951000" />
+      <workItem from="1732111684863" duration="5774000" />
+      <workItem from="1732174012681" duration="3053000" />
+      <workItem from="1732185170752" duration="420000" />
+      <workItem from="1732259477155" duration="355000" />
+      <workItem from="1732344903018" duration="4784000" />
+      <workItem from="1732385828348" duration="13952000" />
+      <workItem from="1732569301965" duration="806000" />
+      <workItem from="1732619072227" duration="1478000" />
+      <workItem from="1732620644829" duration="15671000" />
+      <workItem from="1732655547678" duration="8891000" />
+      <workItem from="1732883518442" duration="19012000" />
+      <workItem from="1732957227693" duration="3720000" />
+      <workItem from="1733137624238" duration="73480000" />
+      <workItem from="1736381022592" duration="35260000" />
+      <workItem from="1736506244384" duration="5637000" />
+    </task>
+    <task id="LOCAL-00001" summary="Add the GetUserInfoFromToken Method in the UserService">
+      <option name="closed" value="true" />
+      <created>1730577171265</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1730577171265</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Adding some missing files">
+      <option name="closed" value="true" />
+      <created>1730926549320</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1730926549320</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Creating Photo.java class">
+      <option name="closed" value="true" />
+      <created>1730926640178</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1730926640178</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Creating PhotoRepository.java.">
+      <option name="closed" value="true" />
+      <created>1730926761774</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1730926761774</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Creating PhotoService.java.">
+      <option name="closed" value="true" />
+      <created>1730926978622</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1730926978622</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Creating PhotoUploadController.java.">
+      <option name="closed" value="true" />
+      <created>1730927123223</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1730927123223</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Creating FileStorageConfig.java">
+      <option name="closed" value="true" />
+      <created>1730927265463</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1730927265463</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Creating Files for FileUpload">
+      <option name="closed" value="true" />
+      <created>1730927508885</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1730927508885</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Modifying application.yml file to manage image upload">
+      <option name="closed" value="true" />
+      <created>1730933891265</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1730933891265</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Adding ImagePath Field in Candidate.java">
+      <option name="closed" value="true" />
+      <created>1730933925784</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1730933925784</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Writing the method in Candidate Service for image upload">
+      <option name="closed" value="true" />
+      <created>1730933962271</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1730933962271</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Modifying Controller to take into consideration ImageUpload">
+      <option name="closed" value="true" />
+      <created>1730934000233</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1730934000233</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Adding workspace.xml">
+      <option name="closed" value="true" />
+      <created>1730934018330</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1730934018330</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Adding Image Upload Functionality on a Candidate">
+      <option name="closed" value="true" />
+      <created>1731104240246</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1731104240246</updated>
+    </task>
+    <task id="LOCAL-00015" summary="implementing task management">
+      <option name="closed" value="true" />
+      <created>1732391466915</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1732391466915</updated>
+    </task>
+    <task id="LOCAL-00016" summary="updated the task management">
+      <option name="closed" value="true" />
+      <created>1732629485768</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1732629485768</updated>
+    </task>
+    <task id="LOCAL-00017" summary="updated the calender">
+      <option name="closed" value="true" />
+      <created>1732904655484</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1732904655484</updated>
+    </task>
+    <task id="LOCAL-00018" summary="solve merge conflit">
+      <option name="closed" value="true" />
+      <created>1733084438124</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1733084438124</updated>
+    </task>
+    <task id="LOCAL-00019" summary="delete unversioned file">
+      <option name="closed" value="true" />
+      <created>1733088158597</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1733088158597</updated>
+    </task>
+    <task id="LOCAL-00020" summary="finish task as completed functionality">
+      <option name="closed" value="true" />
+      <created>1733126469939</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1733126469939</updated>
+    </task>
+    <task id="LOCAL-00021" summary="solve merge conflit">
+      <option name="closed" value="true" />
+      <created>1733126547975</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1733126547975</updated>
+    </task>
+    <task id="LOCAL-00022" summary="resolve all problems on each services">
+      <option name="closed" value="true" />
+      <created>1733127890512</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1733127890512</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Fix all bugs and improve the studemanagement service">
+      <option name="closed" value="true" />
+      <created>1733405438825</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1733405438825</updated>
+    </task>
+    <task id="LOCAL-00024" summary="solve merge confilt">
+      <option name="closed" value="true" />
+      <created>1733406553730</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1733406553730</updated>
+    </task>
+    <task id="LOCAL-00025" summary="implemented notification for task service and i updated the calendar">
+      <option name="closed" value="true" />
+      <created>1733745529808</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1733745529808</updated>
+    </task>
+    <task id="LOCAL-00026" summary="updated the notification for task service and i updated the calendar">
+      <option name="closed" value="true" />
+      <created>1733745623988</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1733745623988</updated>
+    </task>
+    <task id="LOCAL-00027" summary="implement the nofificaation for task">
+      <option name="closed" value="true" />
+      <created>1736384459453</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1736384459453</updated>
+    </task>
+    <task id="LOCAL-00028" summary="implement candidateId">
+      <option name="closed" value="true" />
+      <created>1736392542302</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1736392542302</updated>
+    </task>
+    <task id="LOCAL-00029" summary="implement candidateId">
+      <option name="closed" value="true" />
+      <created>1736392603238</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1736392603238</updated>
+    </task>
+    <task id="LOCAL-00030" summary="implemented update candidate and fix bugs in events">
+      <option name="closed" value="true" />
+      <created>1736399182940</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1736399182940</updated>
+    </task>
+    <task id="LOCAL-00031" summary="implemented the calender successfully">
+      <option name="closed" value="true" />
+      <created>1736411857898</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1736411857898</updated>
+    </task>
+    <task id="LOCAL-00032" summary="solve merge conflit">
+      <option name="closed" value="true" />
+      <created>1736412000248</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1736412000248</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/Tony" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="Feudjio" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="main" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/main" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Creating PhotoService.java." />
+    <MESSAGE value="Creating PhotoUploadController.java." />
+    <MESSAGE value="Creating FileStorageConfig.java" />
+    <MESSAGE value="Creating Files for FileUpload" />
+    <MESSAGE value="Modifying application.yml file to manage image upload" />
+    <MESSAGE value="Adding ImagePath Field in Candidate.java" />
+    <MESSAGE value="Writing the method in Candidate Service for image upload" />
+    <MESSAGE value="Modifying Controller to take into consideration ImageUpload" />
+    <MESSAGE value="Adding workspace.xml" />
+    <MESSAGE value="Finalizing Image Upload for User" />
+    <MESSAGE value="implementing task management" />
+    <MESSAGE value="updated the calender" />
+    <MESSAGE value="updated the task management" />
+    <MESSAGE value="delete unversioned file" />
+    <MESSAGE value="finish task as completed functionality" />
+    <MESSAGE value="resolve all problems on each services" />
+    <MESSAGE value="Fix all bugs and improve the studemanagement service" />
+    <MESSAGE value="solve merge confilt" />
+    <MESSAGE value="implemented notification for task service and i updated the calendar" />
+    <MESSAGE value="updated the notification for task service and i updated the calendar" />
+    <MESSAGE value="implement the nofificaation for task" />
+    <MESSAGE value="implement candidateId" />
+    <MESSAGE value="implemented update candidate and fix bugs in events" />
+    <MESSAGE value="implemented the calender successfully" />
+    <MESSAGE value="solve merge conflit" />
+    <option name="LAST_COMMIT_MESSAGE" value="solve merge conflit" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/CRM_Backend/auth-service/src/main/java/com/crm/authservice/auth_api1/models/ImageData.java</url>
+          <line>6</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

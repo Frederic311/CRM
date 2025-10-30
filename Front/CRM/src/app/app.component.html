@@ -1,0 +1,11 @@
+@if (currentComponent !== "_LoginComponent" &&currentComponent !== "_ForgotPasswordComponent" && currentComponent!=="_SelfCreationnComponent" ){
+<app-header class="header"></app-header>
+<div class="main">
+  <app-navbar></app-navbar>
+  <div class="main-body">
+    <router-outlet/>
+  </div>
+</div>
+}
+@else{
+<router-outlet></router-outlet>}

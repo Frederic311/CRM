@@ -1,0 +1,366 @@
+/* Container for the page */
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Button for adding a contact */
+.tertiary-btn {
+  background-color: var(--secondary-main-color);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: white;
+  border-radius: 5px;
+}
+
+/* Filter section */
+.filter {
+  margin: 20px 0;
+}
+
+/* Table container for contacts */
+.table-container {
+  background-color: white;
+  border-radius: 9px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Tabs (if any) for filtering */
+.tabs {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  padding: 20px;
+  border-bottom: 3px solid #F1F1F1;
+  position: relative;
+}
+
+.tabs::after {
+  content: '';
+  display: block;
+  background-color: #2A008D;
+  height: 3px;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  border-radius: 10px;
+  transition: transform 0.3s ease, width 0.3s ease;
+  width: var(--indicator-width);
+  transform: var(--indicator-transform, translateX(0));
+}
+
+/* Table for displaying contacts */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table {
+  width: 100%;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  color: #303030;
+}
+
+tbody tr {
+  border-bottom: 1px solid #D9D9D9;
+}
+
+tbody tr:last-of-type {
+  border: none;
+}
+
+/* Table header styles */
+th {
+  background-color: #EEEEFA;
+}
+
+th:first-of-type {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+th:last-of-type {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* Icons and actions in the table */
+.icons {
+  display: flex;
+  gap: 10px;
+}
+
+.table mat-icon {
+  width: 28px;
+  height: 28px;
+  padding: 4px;
+  margin-right: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Icon hover effects */
+.delete:hover, .view:hover, .edit:hover {
+  background-color: #d9d9d94b;
+}
+
+.delete:focus, .view:focus, .edit:focus {
+  background-color: #d9d9d9c4;
+}
+
+/* Active/Inactive status button styles */
+.active {
+  color: rgb(0, 255, 119);
+  background-color: rgba(0, 255, 119, 0.303);
+  padding: 9px 15px;
+  border-radius: 5px;
+}
+
+.inactive {
+  color: rgb(255, 0, 47);
+  background-color: rgba(255, 0, 47, 0.303);
+  padding: 9px 15px;
+  border-radius: 5px;
+}
+
+/* Edit form styling */
+.editform {
+  width: 500px;
+   max-height: auto;  /* Set a maximum height */
+  overflow-y: auto;  /* Enable vertical scrolling */
+  background-color: white;
+  padding: 20px;
+  margin: auto;
+  border-radius: 10px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.editform h2 {
+  margin-bottom: 20px;
+}
+
+/* Input fields inside the form */
+.editform input {
+  padding: 10px 20px;
+  background-color: #F4F5F9;
+  border: 1px solid #dfe0e5;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.editform button {
+  padding: 9px 40px;
+  margin: auto;
+  border-radius: 3px;
+  border: 1px solid #12e87d;
+  color: #12e87d;
+  background-color: transparent;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.editform button:hover {
+  background-color: #12e87d;
+  color: white;
+}
+
+.editform button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* Close button for the edit form */
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s ease-in-out;
+}
+
+.close-button:hover {
+  background-color: #dfe0e5;
+  border-radius: 50px;
+}
+
+/* Overlay background when form is open */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 10;
+  animation: show 0.5s forwards;
+}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Validation styles for form fields */
+input.ng-invalid.ng-touched {
+  border: 2px solid #e74c3c;
+  background-color: #fbeae9;
+}
+
+input.ng-valid.ng-touched {
+  border: 2px solid #2ecc71;
+  background-color: #eafaf1;
+}
+
+/* Spinner for loading state */
+.spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 15;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  z-index: 17;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Icon styles */
+.table mat-icon {
+  width: 28px;
+  height: 28px;
+  padding: 4px;
+  margin-right: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete::ng-deep svg path {
+  stroke: rgb(250, 71, 71);
+}
+.edit::ng-deep svg path {
+  stroke: rgb(71, 250, 119);
+}
+
+
+.custom-dialog-container {
+  width: 300px;
+  height: 300px;
+  border-radius: 8px;
+  background: linear-gradient(145deg, #f0f0f0, #ffffff);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Dialog title styles */
+.custom-dialog-title {
+  font-size: 24px;
+  color: #333;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+  font-weight: bold;
+  flex-grow: 0;
+}
+
+/* Dialog content styles */
+.custom-dialog-content {
+  font-size: 18px;
+  color: #555;
+  text-align: center;
+  padding: 20px;
+  flex-grow: 1;
+}
+
+/* Dialog actions styles */
+.custom-dialog-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  flex-grow: 0;
+}
+
+.custom-dialog-button-no,
+.custom-dialog-button-yes {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+/* No button styles */
+.custom-dialog-button-no {
+  background: #f44336;
+  color: white;
+}
+
+.custom-dialog-button-no:hover {
+  background: #d32f2f;
+}
+
+/* Yes button styles */
+.custom-dialog-button-yes {
+  background: #4caf50;
+  color: white;
+}
+
+.custom-dialog-button-yes:hover {
+  background: #388e3c;
+}
+
+small {
+  color: red;
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}

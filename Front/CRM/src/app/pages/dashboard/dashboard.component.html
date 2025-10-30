@@ -1,0 +1,137 @@
+<h1 class="inter-semi-bold" style="font-size: 2rem;">Dashboard</h1>
+<!-- <h5 class="inter-medium" style="font-size: 0.75rem; color:#878791c3">Over all Stats</h5> -->
+<div class="cards">
+    <div class="card">
+        <mat-icon style="background-color: #FF6F00;" svgIcon="tasks" class="dashicon"></mat-icon>
+        <p class="inter-regular">Total Tasks</p>
+        <div class="stats">
+            <h2 class="inter-bold">{{tasks.length}}</h2>
+            <button type="button" class="inter-bold" [class.hundred] = "percentageChange===100" [class]= "percentageChange > 0 ? 'rise': percentageChange===0 ? 'zero' : 'fall'">
+                @if(percentageChange!==0){
+                    <mat-icon [svgIcon] = "percentageChange>0 ? 'uparrow' : 'downarrow'"></mat-icon>
+                }
+                {{percentageChange}}%
+            </button>
+        </div>
+    </div>
+    <div class="card">
+        <mat-icon style="background-color: #0196DA;" svgIcon="user" class="dashicon"></mat-icon>
+        <p class="inter-regular">Total Candidates</p>
+        <div class="stats">
+            <h2 class="inter-bold">{{ totalCandidates}}</h2>
+            <button type="button" class="inter-bold" [class.hundred] = "percentageChangeCandidates===100" [class]= "percentageChangeCandidates > 0 ? 'rise': percentageChangeCandidates===0 ? 'zero': 'fall'">
+                @if(percentageChangeCandidates!==0){
+                    <mat-icon [svgIcon] = "percentageChangeCandidates>0 ? 'uparrow' : 'downarrow'"></mat-icon>
+                }
+                {{percentageChangeCandidates}}%
+            </button>
+        </div>
+    </div>
+    <div class="card">
+        <mat-icon style="background-color: #008D59;" svgIcon="events" class="dashicon"></mat-icon>
+        <p class="inter-regular">Total Events</p>
+        <div class="stats">
+            <h2 class="inter-bold">{{totalEvents}}</h2>
+            <button type="button" class="inter-bold" [class.hundred] = "percentageChangeEvents===100" [class]= "percentageChangeEvents > 0 ? 'rise': percentageChangeEvents===0 ? 'zero': 'fall'">
+                @if(percentageChangeEvents!==0){
+                    <mat-icon [svgIcon] = "percentageChangeEvents>0 ? 'uparrow' : 'downarrow'"></mat-icon>
+                }
+                {{percentageChangeEvents}}%
+            </button>
+        </div>
+    </div>
+    <div class="card">
+        <mat-icon style="background-color: #8800FF;" svgIcon="students" class="dashicon"></mat-icon>
+        <p class="inter-regular">Total Students</p>
+        <div class="stats">
+            <h2>{{ totalstudents}}</h2>
+            <button type="button" class="inter-bold" [class.hundred] = "percentageChangeStudents===100" [class]= "percentageChangeStudents > 0 ? 'rise': percentageChangeStudents===0 ? 'zero': 'fall'">
+                @if(percentageChangeStudents!==0){
+                    <mat-icon [svgIcon] = "percentageChangeStudents>0 ? 'uparrow' : 'downarrow'"></mat-icon>
+                }
+                {{percentageChangeStudents}}%
+            </button>
+        </div>
+    </div>
+</div>
+<div class="cards">
+    <div class="card graph">
+        <div class="stats">
+            <h4 class="inter-semi-bold">Pipeline Overview</h4>
+            <div class="stats">
+                <button class="square-btn new" [routerLink]="['/candidates/new']" routerLinkActive="router-link-active">
+                    <mat-icon svgIcon="add" aria-hidden="false" class="add"></mat-icon>
+                    New candidate
+                </button>
+            </div>
+        </div>
+        <p-chart type="bar" [data]="basicData" [options]="basicOptions" />
+    </div>
+    <div class="card tasks">
+        <div class="stats">
+            <h4 class="inter-semi-bold" style="margin-bottom: 10px">Task Status</h4>
+            <!-- <p-dropdown
+            class="drop"
+            [options]="['ADMIN','USER']"
+            placeholder="filter" /> -->
+        </div>
+        <p class="inter-medium">{{allTasksTheseMonth().length}}</p>
+        <p class="inter-regular" style="font-size: 0.875rem;">tasks right now this month</p>
+        @if(tasks.length!==0){
+            <div class="stats">
+                <div class="completed" [class.statHundred]="getStatusDistribution('COMPLETED').number===tasks.length"  [class.statZero]="getStatusDistribution('COMPLETED').number===0" [style.width]="getStatusDistribution('COMPLETED').width"></div>
+                <div class="ongoing" [class.statHundred]="getStatusDistribution('IN_PROGRESS').number===tasks.length"  [class.statZero]="getStatusDistribution('IN_PROGRESS').number===0" [style.width]="getStatusDistribution('IN_PROGRESS').width"></div>
+                <div class="onhold" [class.statHundred]="getStatusDistribution('PENDING').number===tasks.length"  [class.statZero]="getStatusDistribution('PENDING').number===0" [style.width]="getStatusDistribution('PENDING').width"></div>
+            </div>
+            <div>
+                <div class="taskcell">
+                    <span class="going">In progress</span>
+                    <div class="badge" style="background-color: #2194e12a; color: #2195E1">+{{getStatusDistribution('IN_PROGRESS').number}}</div>
+                </div>
+                <div class="taskcell">
+                    <span class="hold">Pending</span>
+                    <div class="badge" style="background-color: #dc54352c; color:#DC5535">+{{getStatusDistribution('PENDING').number}}</div>
+                </div>
+                <div class="taskcell">
+                    <span class="completed">Completed</span>
+                    <div class="badge" style="background-color: #1bb96538; color:#1BB965">+{{getStatusDistribution('COMPLETED').number}}</div>
+                </div>
+            </div>
+        } 
+        @else {
+            <div class="illustration"></div>
+            <p class="no-task inter-bold">Sorry, No tasks yet</p>
+        }
+        <button class="inter-medium"  [routerLink]="['/task']">Create a New Task</button>
+    </div>
+</div>
+<div class="card tasks-table">
+  <h4  class="inter-semi-bold">Tasks</h4>
+  <div class="table">
+    <table>
+      <thead>
+      <tr>
+        <th class="inter-regular">Title</th>
+        <th class="inter-regular">Assigned Date</th>
+        <th class="inter-regular">Status</th>
+        <th class="inter-regular">Due Date</th>
+        <th class="inter-regular">Priority Level</th>
+        <th class="inter-regular">Assigned To</th>
+        <th class="inter-regular">Completion Rate</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let task of getMostRecentTasks()">
+        <td>{{ task.description }}</td>
+        <td>{{ task.assignedDate}}</td>
+        <td>{{ task.status }}</td>
+        <td>{{ task.deadline }}</td>
+        <td [style.color]="getPriorityColor(task.priority)">{{ task.priority }}</td>
+        <td>{{ task.assignedTo }}</td>
+        <td>{{ task.completed ? '100%' : '0%' }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

@@ -1,0 +1,57 @@
+<div class="wrapper">
+    <div class="container main">
+      <div class="row">
+        <div class="col-md-6 side-image">
+          <img src="#" alt="">
+          <div class="blob-container">
+            <div class="blob"></div>
+            <div class="blob"></div>
+            <div class="blob"></div>
+            <div class="blob"></div>
+            <div class="blob"></div>
+            <div class="blob"></div>
+          </div>
+          <div class="text">
+            <p>Join Us</p>
+            <div class="signin-container">
+              <div class="signin">
+                <span id="interr">Join the ride and discover new opportunities</span>
+              </div>
+              <div class="signin" id="logo-image">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 right">
+          <div class="input-box">
+            <header>Sign In</header>
+            <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+            <div class="input-field">
+              <input type="text" class="input" id="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" required="" autocomplete="off">
+              <label for="email">Email</label>
+            </div>
+            <div class="input-field">
+              <input type="password" class="input" id="pass" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" required="">
+              <label for="pass">Password</label>
+            </div>
+            <div class="input-field">
+              <input type="submit" class="submit" value="Sign In" (click)="onSubmit()">
+            </div>
+            <div class="signin" style="display: flex; flex-direction: column; align-items: center;">
+              <div class="checkbox-container" style="display: flex; align-items: center; margin-bottom: 15px;">
+                <input type="checkbox" id="myCheckbox">
+                <label for="myCheckbox" style="margin-right: 50px;">Remember me</label>
+                <a (click)="navigateToForgetPass()">Forgot password?</a>
+              </div>
+              <a (click)="navigateToselfCreation()" style="font-size: 1.5em;">Register as candidate!🔥</a>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

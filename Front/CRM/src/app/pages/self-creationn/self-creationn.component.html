@@ -1,0 +1,249 @@
+<div class="container">
+    <div class="card">
+    <!-- <p-breadcrumb class="breadcrumb" [model]="breadcrumbItems"></p-breadcrumb> -->
+<!-- <div class="vec"></div> -->
+        <div class="form">
+            <div class="vec"></div>
+
+            <div class="left-side">
+                <div class="fill">
+                    <div class="logo">
+                    </div>
+                    <div class="left-heading">
+                        <h3 class="inter-semi-bold">Create candidate</h3>
+                    </div>
+                    <!-- <div class="steps-content">
+                        <h3>Step <span class="step-number">1</span></h3>
+                        <p #stepNumberContent class="step-number-content active">Enter your personal information to get closer to companies.</p>
+                        <p #stepNumberContent class="step-number-content d-none">Get to know better by adding your diploma,certificate and education life.</p>
+                        <p #stepNumberContent class="step-number-content d-none">Help companies get to know you better by telling then about your past experiences.</p>
+                        <p #stepNumberContent class="step-number-content d-none">Add your profile piccture and let companies find youy fast.</p>
+                    </div> -->
+                    <ul class="progress-bar">
+                        <li #stepList class="active inter-regular">Personal Information</li>
+                        <li #stepList class="inter-regular">Education</li>
+                        <li #stepList class="inter-regular">Work Experience</li>
+                        <li #stepList class="inter-regular">Parent Information</li>
+                    </ul>
+                </div>
+            </div>
+            <div [formGroup]="mainFormGroup" class="right-side">
+                <div class="fill-form">
+                    <div formGroupName="personalInfo" #mainForm class="main active">
+                        <small><i class="pi pi-address-book"></i></small>
+                        <div class="text">
+                            <h2 class="inter-bold">Your Personal Information</h2>
+                            <p class="inter-light">Fill in the candidates personal information.</p>
+                        </div>
+                        <div class="input-text">
+                            <div class="input-div">
+                                <input formControlName="firstName" type="text" required require id="user_name">
+                                <span>First Name</span>
+                            </div>
+                            <div class="input-div">
+                                <input formControlName="lastName" type="text" required>
+                                <span>Last Name</span>
+                            </div>
+                            <div class="input-div">
+                                <select formControlName="field" required>
+                                  <option value="" disabled selected>Select Field</option>
+                                  <option value="SRT">SRT</option>
+                                  <option value="ISI">ISI</option>
+                                  <option value="GC">GC</option>
+                                </select>
+                                <span>Field</span>
+                              </div>
+
+                        </div>
+
+                        <div class="input-text">
+                            <div class="input-div">
+                                <input formControlName="phoneNumber" type="tel" required require>
+                                <span>Phone number</span>
+                            </div>
+                            <div class="input-div">
+                                <input formControlName="email" type="email" required require>
+                                <span>E-mail Address</span>
+                            </div>
+                            <div class="input-div">
+                                <input formControlName="applicationDate" type="datetime-local" required require>
+                                <!-- <span>AplicationDate</span> -->
+                            </div>
+                        </div>
+                        <div class="input-text">
+                            <div class="input-div">
+                                <input formControlName="applicationSource" type="text" required require>
+                                <span>ApplicationSource</span>
+                            </div>
+                            <div class="input-div">
+                                <input  formControlName="country" type="text" required require>
+                                <span>Country</span>
+                            </div>
+                            <div class="input-div">
+                                <input formControlName="city" type="text" required require>
+                                <span>City</span>
+                            </div>
+                        </div>
+                        <div class="buttons">
+                            <button #nextButton class="next_button">Next Step</button>
+                        </div>
+                    </div>
+
+                    <div formGroupName="education" #mainForm class="main">
+                        <small><i class="pi pi-graduation-cap"></i></small>
+                        <div class="text">
+                            <h2>Education</h2>
+                            <p>Tell us more about your education trajectory.</p>
+                        </div>
+                        <div class="input-text">
+                            <div class="input-div">
+                                <input  formControlName="institutionName" type="text" required require>
+                                <span>School Name</span>
+                            </div>
+                            <div class="input-div">
+                                <input formControlName="highestEducation" type="text" required>
+                                <span>HighestEducation</span>
+                            </div>
+                        </div>
+                        <div class="input-text">
+                            <div class="input-div">
+                                <input formControlName="graduationYear" type="text" required require>
+                                <span>graduationYear</span>
+                            </div>
+                        </div>
+                        <div class="input-text">
+                            <div class="input-div">
+                              <select formControlName="fieldOfStudy" required>
+                                <option value="" disabled selected>Select Field of Study</option>
+                                <option value="Science">Science</option>
+                                <option value="Art">Art</option>
+                                <option value="Technical">Technical</option>
+                              </select>
+                              <span>FieldOfStudy</span>
+                            </div>
+                          </div>
+
+                        <div class="buttons button_space">
+                            <button #backButton class="back_button">Back</button>
+                            <button #nextButton class="next_button">Next Step</button>
+                        </div>
+                    </div>
+
+                    <div formGroupName="workExperience" #mainForm class="main">
+                        <small><i class="pi pi-briefcase"></i></small>
+                        <div class="text">
+                            <h2>Work Experiences</h2>
+                            <p>Can you talk about your past work experience?</p>
+                        </div>
+                        <div class="input-text">
+                            <div class="input-div">
+                                <input formControlName="companyName" type="text">
+                                <span>Company Name</span>
+                            </div>
+                        </div>
+                        <div class="input-text">
+                            <div class="input-div">
+                                <input formControlName="responsibilities" type="text">
+                                <span>responsibilities</span>
+                            </div>
+                        </div>
+                        <div class="buttons button_space">
+                            <button #backButton class="back_button">Back</button>
+                            <button #nextButton class="next_button">Next Step</button>
+                        </div>
+                    </div>
+
+                    <div formGroupName="parentInfo" #mainForm class="main">
+                        <small><i class="pi pi-home"></i></small>
+                        <div class="text">
+                            <h2>Parent Information</h2>
+                            <p>Can you talk about your past work experience?</p>
+                        </div>
+                        <div class="input-text">
+                            <div class="input-div">
+                                <input formControlName="fullName" type="text" required>
+                                <span>FullName</span>
+                            </div>
+                            <div class="input-div">
+                                <input formControlName="email" type="email" required>
+                                <span>Email</span>
+                            </div>
+                        </div>
+                        <div class="input-text">
+                            <div class="input-div">
+                                <input formControlName="relationshipToCandidate" type="text" required>
+                                <span>relationship</span>
+                            </div>
+                            <div class="input-div">
+                                <input formControlName="phoneNumber" type="tel" required>
+                                <span>No</span>
+                            </div>
+                        </div>
+                        <div class="buttons button_space">
+                            <button #backButton type="button" class="back_button">Back</button>
+                            <button #nextButton type="button" class="next_button submit" >Next Step</button>
+                        </div>
+                    </div>
+                     <div #mainForm class="main">
+                        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                        </svg>
+
+                        <div class="text congrats">
+                            <h2>Congratulations!</h2>
+                            <p>Thanks Mr./Mrs. <span class="shown_name"></span> your information have been submitted successfully for the future reference we will contact you soon.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-item"></div>
+                <div class="photo"></div>
+            </div>
+            <div class="upload">
+                <div class="text  flex-item">
+                    <div class="icon"><i class="pi pi-cloud-upload" style="font-size: 2rem"></i></div>
+                    <div>
+                        <h2>Upload files</h2>
+                        <p>Create candidate using a csv file.</p>
+                    </div>
+                </div>
+                <p-toast />
+                <p-fileUpload
+                    name="file"
+                    mode="advanced"
+                    url="http://localhost:8060/api/candidates/upload"
+                    accept=".csv"
+                    [customUpload]="true"
+                    [auto]="false"
+                    (uploadHandler)="onUpload($event)"
+                    maxFileSize="1000000">
+                        <ng-template pTemplate="empty">
+                            <div class="drag-drop">
+                                <i class="pi pi-cloud-upload"></i>
+                                Drag and drop a CSV file here
+                            </div>
+                        </ng-template>
+                </p-fileUpload>
+
+                <div class="flex-item"></div>
+                <h2 style="margin-top: 20px;">Additional Documents</h2>
+                <p-fileUpload
+                    name="documents"
+                    mode="advanced"
+                    [multiple]="true"
+                    [customUpload]="true"
+                    [auto]="false"
+                    (uploadHandler)="uploadingDocuments($event)"
+                    maxFileSize="1000000">
+                        <ng-template pTemplate="empty">
+                            <div class="drag-drop">
+                                <i class="pi pi-cloud-upload"></i>
+                                Drag and drop additional documents here
+                            </div>
+                        </ng-template>
+                </p-fileUpload>
+            </div>
+<div class="vec"></div>
+        </div>
+    </div>
+</div>

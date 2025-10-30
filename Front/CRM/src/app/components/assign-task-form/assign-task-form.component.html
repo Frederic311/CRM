@@ -1,0 +1,27 @@
+<div class="overlay"></div>
+<div class="full" #full>
+    <div class="assign-task">
+        <h1>Assign Task</h1>
+        @if (tasks.length!=0) {
+            <form [formGroup]="assignForm">
+                <select formControlName="task" name="tasks" id="tasks">
+                    @for (task of tasks; track $index) {
+                        <option value="{{task}}">{{task.description}}</option>
+                    }
+                </select>
+                <select formControlName="user" name="assignee" id="assignee">
+                    @for (user of users; track $index) {
+                        <option value="{{user.firstname}} {{user.lastname}}">{{user.firstname}} {{user.lastname}}</option>
+                    }
+                </select>
+                <button type="button" (click)="assign()" class="seconde-btn">save</button>
+            </form>
+        }
+        @else {
+            <div class="illustration"></div>
+            <p class="no-task inter-bold">Sorry, No tasks yet</p>
+            <button class="inter-medium seconde-btn"  [routerLink]="['/task']">Create a New Task</button>
+        }
+    
+    </div>
+</div>

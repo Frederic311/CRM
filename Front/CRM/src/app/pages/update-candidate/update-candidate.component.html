@@ -1,0 +1,111 @@
+<p-toast></p-toast>
+
+<div class="candidate-detail" *ngIf="candidate">
+    <div class="profile-photo">
+      <img [src]="candidate.profilePhoto?.photoData" alt="{{candidate.firstName}} {{candidate.lastName}}" class="round-image">
+    </div>
+    <form (ngSubmit)="onSubmit()">
+      <section class="section">
+        <h2 class="section-title">Candidate Information</h2>
+        <div class="form-grid">
+          <div class="form-group">
+            <div class="profile-section">
+              <div class="form-group">
+                <img [src]="candidate.profilePhoto?.photoData" alt="{{candidate.firstName}} {{candidate.lastName}}" class="round-image">
+              </div>
+            </div>
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" [(ngModel)]="candidate.firstName" name="firstName" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" [(ngModel)]="candidate.lastName" name="lastName" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="country">Country</label>
+            <input type="text" id="country" [(ngModel)]="candidate.country" name="country" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" id="city" [(ngModel)]="candidate.city" name="city" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" [(ngModel)]="candidate.email" name="email" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="phoneNumber">Phone Number</label>
+            <input type="text" id="phoneNumber" [(ngModel)]="candidate.phoneNumber" name="phoneNumber" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="phoneNumber">Student_Id</label>
+            <input type="text" id="phoneNumber" [(ngModel)]="candidate.candidateId" name="candidateId" class="form-control" disabled>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Educational Details</h2>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="highestEducation">Highest Education</label>
+            <input type="text" id="highestEducation" [(ngModel)]="highestEducation" name="highestEducation" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="institutionName">Institution Name</label>
+            <input type="text" id="institutionName" [(ngModel)]="institutionName" name="institutionName" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="graduationYear">Graduation Year</label>
+            <input type="number" id="graduationYear" [(ngModel)]="graduationYear" name="graduationYear" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="fieldOfStudy">Field of Study</label>
+            <input type="text" id="fieldOfStudy" [(ngModel)]="fieldOfStudy" name="fieldOfStudy" class="form-control">
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Employment Details</h2>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="companyName">Company Name</label>
+            <input type="text" id="companyName" [(ngModel)]="companyName" name="companyName" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="responsibilities">Responsibilities</label>
+            <input type="text" id="responsibilities" [(ngModel)]="responsibilities" name="responsibilities" class="form-control">
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Parent Details</h2>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="parentFirstName">Parent's First Name</label>
+            <input type="text" id="parentFirstName" [(ngModel)]="parentFirstName" name="parentFirstName" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="parentEmail">Parent's Email</label>
+            <input type="email" id="parentEmail" [(ngModel)]="parentEmail" name="parentEmail" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="parentPhoneNumber">Parent's Phone Number</label>
+            <input type="text" id="parentPhoneNumber" [(ngModel)]="parentPhoneNumber" name="parentPhoneNumber" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="parentRelationshipToCandidate">Parent's Relationship to Candidate</label>
+            <input type="text" id="parentRelationshipToCandidate" [(ngModel)]="parentRelationshipToCandidate" name="parentRelationshipToCandidate" class="form-control">
+          </div>
+        </div>
+      </section>
+
+      <div class="buttons">
+        <button type="button" (click)="goBack()">Back</button>
+        <button type="submit">Update</button>
+      </div>
+    </form>
+  </div>

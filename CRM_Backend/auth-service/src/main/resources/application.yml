@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: user-service
+
+  cloud:
+    discovery:
+      client:
+        simple:
+          eureka:
+            enabled: true
+            serviceUrl: http://localhost:8761/eureka/
+
+  profiles:
+    active: dev
+
+  servlet:
+    multipart:
+      max-file-size: 50MB          # Maximum size for individual file uploads
+      max-request-size: 100MB      # Maximum request size (for multiple file uploads)
+
+  # File storage properties
+  file:
+    upload-dir: src/main/resources/static/images # Directory to save uploaded files
+
+springdoc:
+  default-produces-media-type: application/json
+
+server:
+  servlet:
+    context-path: /api/v1/

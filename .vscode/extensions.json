@@ -1,0 +1,6 @@
+{
+    "recommendations": [
+        "eamodio.gitlens",
+        "vscjava.vscode-gradle"
+    ]
+}

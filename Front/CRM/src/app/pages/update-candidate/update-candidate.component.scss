@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f4f7f6;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.candidate-detail {
+  background: #fff;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-photo {
+  text-align: center;
+  margin-bottom: 2rem;
+  position: absolute;
+  top: -75px;
+  left: calc(50% - 37.5px);
+}
+
+.round-image {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  border: 3px solid #2A008D;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  width: 100%;
+}
+
+.section {
+  background: #f9fafb;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+}
+
+.section-title {
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #2A008D;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+input[type="text"], input[type="email"], input[type="number"] {
+  padding: 0.75rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background: #fff;
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:disabled, input[type="email"]:disabled, input[type="number"]:disabled {
+  // background-color: #e9ecef;
+  cursor: not-allowed;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="number"]:focus {
+  border-color: #2A008D;
+  outline: none;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+button {
+  background: #2A008D;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #1d006d;
+}

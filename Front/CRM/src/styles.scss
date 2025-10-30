@@ -1,0 +1,187 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the theme object.
+$CRM-theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: mat.$azure-palette,
+    tertiary: mat.$blue-palette,
+  ),
+  density: (
+    scale: 0,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+:root {
+  @include mat.all-component-themes($CRM-theme);
+  --background: #F5F6FA;
+  --input: #F4F5F9;
+  --primary-main-color: #2A008D;
+  --secondary-main-color: #DC5535;
+}
+
+// Comment out the line below if you want to use the pre-defined typography utility classes.
+// For more information: https://material.angular.io/guide/typography#using-typography-styles-in-your-application.
+// @include mat.typography-hierarchy($CRM-theme);
+
+// Comment out the line below if you want to use the deprecated `color` inputs.
+// @include mat.color-variants-backwards-compatibility($CRM-theme);
+
+/* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import '@fontsource/inter/300.css'; // Light
+@import '@fontsource/inter/400.css'; // Regular
+@import '@fontsource/inter/500.css'; // Medium
+@import '@fontsource/inter/600.css'; // Semi-bold
+@import '@fontsource/inter/700.css'; // Bold
+
+
+/* Example CSS */
+.inter-light {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300; /* Light */
+}
+
+.inter-regular {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400; /* Regular */
+}
+
+.inter-medium {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500; /* Medium */
+}
+
+.inter-semi-bold {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600; /* Semi-bold */
+}
+
+.inter-bold {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700; /* Bold */
+}
+
+html, body { height: 100%;}
+body {
+  margin: 0!important;
+  font-family: 'Inter', sans-serif!important;
+  background-color: var(--background)!important;
+}
+.breadcrumb{
+  background-color: transparent!important;
+  padding: 0!important;
+  margin: 0!important;
+}
+nav.p-breadcrumb {
+  clear: both;
+  background-color: transparent;
+  padding: 0; /* Optional: Adjust padding as needed */
+  border: none; /* Optional: Remove any border */
+}
+ol.p-breadcrumb-list{
+  padding-left: 0;
+  gap: 5px!important;
+  *{
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: #505050;
+    transition: all 0.3s ease-in-out;
+  }
+  *:hover{
+    text-decoration: underline;
+    color: #000000;
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+
+header button{
+  line-height: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+.row{
+  margin-left: 0!important;
+  justify-content: space-between;
+}
+
+
+.field input.p-inputtext, .field .p-dropdown-label{
+  padding: 6px 12px!important;
+  width: 100%;
+}
+.field .p-inputwrapper, .field .p-calendar{
+  width: 100%;
+}
+
+.p-inputtext{
+  padding: 8px 10px;
+}
+
+.pagination{
+  p-paginator .p-paginator{border-radius: 50px!important;}
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  background-color: transparent !important;
+  color: #000 !important;
+  box-shadow: 0 0 0px 1000px #ffffff00 inset !important; /* Fix the shadow that can appear */
+}
+
+.prime-btn{
+  color: white;
+  background-color: var(--primary-main-color);
+  border: 2px solid var(--primary-main-color);
+  ::ng-deep .add svg path{
+      stroke: white;
+      stroke-width: 2px;
+  }
+}
+.prime-btn:hover{
+  background-color: #1c005f;
+  transition: 0.3s ease-in-out;
+}
+.seconde-btn{
+  color: var(--primary-main-color);
+  background-color: transparent;
+  border: 2px solid var(--primary-main-color);
+  
+  ::ng-deep .add svg path{
+      stroke: var(--primary-main-color);
+      stroke-width: 2px;
+  }
+}
+.seconde-btn:hover{
+  color: white;
+  background-color: var(--primary-main-color);
+  border: 2px solid var(--primary-main-color);
+  ::ng-deep .add svg path{
+      stroke: white;
+      stroke-width: 2px;
+  }
+  transition: 0.3s ease-in-out;
+}
+
+@import '../node_modules/@syncfusion/ej2-base/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-buttons/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-calendars/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-dropdowns/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-inputs/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-lists/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-popups/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-navigations/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-angular-schedule/styles/material.css';

@@ -1,0 +1,165 @@
+<div class="container">
+    <h1 class="inter-semi-bold"  style="font-size: 2rem;">Users ({{users.length}})</h1>
+    <button type="button" (click)="show()" class="tertiary-btn">assign task</button>
+</div>
+<div class="filter">
+    <p-dropdown 
+    [options]="filters"
+    optionLabel="name"
+    [formControl]="filter"
+    placeholder="Filter" />
+</div>
+<div class="table-container-main">
+    <div class="table-container">
+        <div class="tabs">
+            @for (tab of tabs; track $index) {
+                <div class="users-tab"
+                [class.active-tab]="activeTab === $index"
+                (click)="selectTab($index,$event)">
+                   {{ tab.label }}
+                </div>
+            }
+            <div class="line"></div>
+        </div>
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th><mat-checkbox></mat-checkbox></th>
+                        <th class="inter-regular">Name</th>
+                        <th class="inter-regular">Email</th>
+                        <th class="inter-regular">Role</th>
+                        <th class="inter-regular">Status</th>
+                        <th class="inter-regular">Last Modified</th>
+                        <th class="inter-regular">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <p-toast />
+                    <p-confirmDialog />
+                    @if (activeTab===0) {
+                        @for (user of users | fieldFilter | fieldFilter : selectedFilter: null : (selectedFilter ? false : true); track $index) {
+                            <tr>
+                                <td><mat-checkbox #checkboxall></mat-checkbox></td>
+                                <td style="max-width: 210px;" class="inter-semi-bold">{{user.firstname}} {{user.lastname}}</td>
+                                <td>{{user.email}}</td>
+                                <td  class="name">{{user.roles[0].name}}</td>
+                                @if (user.enabled) {
+                                    <td><span  class="active">Active</span></td>
+                                }
+                                @else {
+                                    <td><span  class="inactive">Inactive</span></td>
+                                }
+                                @if (user.lastModifiedDate) {
+                                    <td style="max-width: 230px;">{{user.lastModifiedDate | date: 'dd/MM/yyyy HH:mm'}}</td>
+                                }
+                                @else {
+                                    <td style="color: rgb(253, 205, 13);max-width: 230px;">not yet login</td>
+                                }
+                                <td class="icons">
+                                    <mat-icon class="view" svgIcon="view" (click)="viewUser(user.id)"></mat-icon>
+                                    <mat-icon class="edit" svgIcon="edit" (click) = "showEdit(user)"></mat-icon>
+                                    <mat-icon class="delete" svgIcon="delete" (click) = "confirmDeletion($event,user.id)"></mat-icon>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    @if (activeTab===1) {
+                        @for (user of users |fieldFilter: 'roles':'admin':true | fieldFilter : selectedFilter: null : (selectedFilter ? false : true); track $index) {
+                            <tr>
+                                <td><mat-checkbox #checkboxadmin></mat-checkbox></td>
+                                <td style="max-width: 210px;" class="inter-semi-bold">{{user.firstname}} {{user.lastname}}</td>
+                                <td>{{user.email}}</td>
+                                <td  class="name">{{user.roles[0].name}}</td>
+                                @if (user.enabled) {
+                                    <td><span  class="active">Active</span></td>
+                                }
+                                @else {
+                                    <td><span  class="inactive">Inactive</span></td>
+                                }
+                                @if (user.lastModifiedDate) {
+                                    <td style="max-width: 230px;">{{user.lastModifiedDate | date: 'dd/MM/yyyy HH:mm'}}</td>
+                                }
+                                @else {
+                                    <td style="color: rgb(253, 205, 13);max-width: 230px;">not yet login</td>
+                                }
+                                <td class="icons">
+                                    <mat-icon class="view" svgIcon="view" (click)="viewUser(user.id)"></mat-icon>
+                                    <mat-icon class="edit" svgIcon="edit" (click) = "showEdit(user)"></mat-icon>
+                                    <mat-icon class="delete" svgIcon="delete" (click) = "confirmDeletion($event,user.id)"></mat-icon>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    @if (activeTab===2) {
+                        @for (user of users |fieldFilter: 'roles':'user':true | fieldFilter : selectedFilter: null : (selectedFilter ? false : true); track $index) {
+                            <tr>
+                                <td><mat-checkbox #checkboxuser></mat-checkbox></td>
+                                <td style="max-width: 210px;" class="inter-semi-bold">{{user.firstname}} {{user.lastname}}</td>
+                                <td>{{user.email}}</td>
+                                <td  class="name">{{user.roles[0].name}}</td>
+                                @if (user.enabled) {
+                                    <td><span  class="active">Active</span></td>
+                                }
+                                @else {
+                                    <td><span  class="inactive">Inactive</span></td>
+                                }
+                                @if (user.lastModifiedDate) {
+                                    <td style="max-width: 230px;">{{user.lastModifiedDate | date: 'dd/MM/yyyy HH:mm'}}</td>
+                                }
+                                @else {
+                                    <td style="color: rgb(253, 205, 13);max-width: 230px;">not yet login</td>
+                                }
+                                <td class="icons">
+                                    <mat-icon class="view" svgIcon="view" (click)="viewUser(user.id)"></mat-icon>
+                                    <mat-icon class="edit" svgIcon="edit" (click) = "showEdit(user)"></mat-icon>
+                                    <mat-icon class="delete" svgIcon="delete" (click) = "confirmDeletion($event,user.id)"></mat-icon>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- <div class="pagination">
+        <p-paginator rows="10" totalRecords="{{totalRecords}}" (page)="onPageChange($event)"/>
+    </div> -->
+</div>
+
+@if(edituser){
+    <div class="overlay" (click)="closeForm()"></div>
+    <div class="editform">
+        <span class="close-button" (click)="closeForm()">&times;</span>
+        <div class="innerform">
+            <h2 class="inter-semi-bold">Update User</h2>
+            <form [formGroup]="myForm">
+                <input class="inter-regular" type="text"  placeholder="firstname" formControlName="firstname" name="firstname" id="firstname">
+                <input class="inter-regular" type="text"  placeholder="lastname" formControlName="lastname" name="lastname" id="lastname">
+                <input class="inter-regular" type="email"  placeholder="email" formControlName="email" name="email" id="email">
+                <input class="inter-regular" type="password" formControlName="password" placeholder="password" name="password" id="password">
+                <div formGroupName="role">
+                    <p-dropdown 
+                    [options]="['ADMIN','USER']"
+                    formControlName="name"
+                    placeholder="Select a role" />
+                </div>
+                <mat-checkbox formControlName="enabled">Active</mat-checkbox>
+                <button class="submit" (click)="updateUser()" type="button">Save changes</button>
+            </form>
+        </div>
+    </div>
+}
+
+<app-success [message]="validMessage" class="success-modal"></app-success>
+
+<!-- Spinner -->
+@if (loading) {
+    <div class="spinner-overlay">
+        <div class="spinner"></div>
+    </div>
+}
+
+@if (assign) {
+    <app-assign-task-form (hideformevent) = "hide($event)"></app-assign-task-form>
+}

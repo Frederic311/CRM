@@ -1,0 +1,226 @@
+<div class="filter">
+  <input
+    type="text"
+    placeholder="search...."
+    class="filter-input"
+    [(ngModel)]="filterTerm"
+    (input)="filterTasks()"
+  />
+  <button class="tertiary-btn" (click)="exportTable('csv')">Export CSV</button>
+  <button class="tertiary-btn" (click)="exportTable('xlsx')">Export Excel</button>
+  <button class="tertiary-btn" (click)="openModal()">Add Task</button>
+</div>
+<div class="table-container">
+  <div class="table">
+    <table>
+      <thead>
+      <tr>
+        <th><mat-checkbox></mat-checkbox></th>
+        <th>CreatedBy</th>
+        <th>Candidate Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Deadline</th>
+        <th>Priority</th>
+        <th>Status</th>
+        <th>Assigned To</th>
+        <th>Assigned Date</th>
+        <th>Completion</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- Iterate over filteredTasks -->
+      <tr *ngFor="let task of filteredTasks">
+        <td><mat-checkbox></mat-checkbox></td>
+        <td>{{ task.createdBy }}</td>
+        <td>{{ task.candidateFullname}}</td>
+        <td>{{ task.type }}</td>
+        <td>{{ task.description }}</td>
+        <td>{{ task.deadline }}</td>
+        <td>{{ task.priority }}</td>
+        <td>{{ task.status }}</td>
+        <td>{{ task.assignedTo }}</td>
+        <td>{{ task.assignedDate }}</td>
+
+        <!-- Completion Checkbox -->
+        <td>
+          <mat-checkbox
+            [(ngModel)]="task.completed"
+            (change)="onCompletedChange(task, $event)">
+          </mat-checkbox>
+        </td>
+
+        <!-- Action Icons -->
+        <td class="icons">
+          <mat-icon class="view" svgIcon="view"></mat-icon>
+          <mat-icon class="edit" svgIcon="edit" (click)="editTask(task)"></mat-icon>
+          <mat-icon class="delete" svgIcon="delete" (click)="confirmDelete($event, task.id)"></mat-icon>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<div *ngIf="openForm">
+  <div class="overlay" (click)="closeForm()"></div>
+  <div class="form">
+    <span class="close-button" (click)="closeForm()">&times;</span>
+    <div class="innerform">
+      <h2 class="inter-semi-bold">Add a New Task</h2>
+      <form [formGroup]="createTaskForm" (ngSubmit)="newTask()">
+        <div>
+          <label for="candidateFullname">candidateFullname</label>
+          <select
+            class="inter-regular"
+            formControlName="candidateFullname"
+            id="candidateFullname"
+          >
+            <option *ngFor="let candidate of candidate" [value]="candidate.firstName + ' ' + candidate.lastName">
+              {{ candidate.firstName}} {{ candidate.lastName }}
+            </option>
+            <option value="">no association</option>
+          </select>
+        </div>
+        <input
+          class="inter-regular"
+          formControlName="type"
+          type="text"
+          id="type"
+          placeholder="Type"
+        />
+        <input
+          class="inter-regular"
+          formControlName="description"
+          type="text"
+          id="description"
+          placeholder="Description"
+        />
+        <!-- component.html -->
+        <div>
+          <label for="assignedTo">Assigned To</label>
+          <select
+            class="inter-regular"
+            formControlName="assignedTo"
+            id="assignedTo"
+          >
+            <option *ngFor="let user of users" [value]="user.firstname + ' ' + user.lastname">
+              {{ user.firstname }} {{ user.lastname }}
+            </option>
+          </select>
+        </div>
+
+
+        <input
+          class="inter-regular"
+          formControlName="deadline"
+          type="date"
+          id="deadline"
+          placeholder="Deadline"
+        />
+        <div>
+          <label for="priority">Priority</label>
+          <select class="inter-regular" formControlName="priority" id="priority">
+            <option value="" disabled selected>Select Priority</option>
+            <option value="LOW">LOW</option>
+            <option value="MEDIUM">MEDIUM</option>
+            <option value="HIGH">HIGH</option>
+          </select>
+        </div>
+
+        <div class="buttons">
+          <button class="inter-regular" type="button" (click)="closeForm()">Cancel</button>
+          <button
+            class="inter-regular"
+            type="submit"
+            [disabled]="!createTaskForm.valid"
+          >
+            Save
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<app-success [message]="validMessage"></app-success>
+
+<!-- Spinner -->
+<div *ngIf="loading" class="spinner-overlay">
+  <div class="spinner"></div>
+</div>
+<ng-template #confirmDeleteDialog let-dialogRef>
+  <h2 mat-dialog-title class="custom-dialog-title">Confirm Delete</h2>
+  <div mat-dialog-content class="custom-dialog-content">Are you sure you want to delete this type?</div>
+  <div mat-dialog-actions class="custom-dialog-actions">
+    <button mat-button class="custom-dialog-button-no" (click)="ondelnoClick()">Cancel</button>
+    <button mat-button class="custom-dialog-button-yes" (click)="onyesdelClick()">Delete</button>
+  </div>
+</ng-template>
+
+<p-toast></p-toast>
+<!-- Edit Form Modal -->
+<div *ngIf="openEditForm" >
+  <div class="overlay" (click)="closeEditForm()"></div>
+  <div class="form">
+    <span class="close-button" (click)="closeEditForm()">&times;</span>
+    <div class="innerform">
+      <h2 class="inter-semi-bold">Edit Task</h2>
+      <form [formGroup]="createTaskForm" (ngSubmit)="updateTask()">
+        <!-- Candidate Fullname -->
+        <div>
+          <label for="candidateFullname">Candidate Fullname</label>
+          <select formControlName="candidateFullname" >
+            <option *ngFor="let candidate of candidate" [value]="candidate.firstName + ' ' + candidate.lastName">
+              {{ candidate.firstName }} {{ candidate.lastName }}
+            </option>
+            <option value="">No Association</option>
+          </select>
+        </div>
+
+        <!-- Type -->
+        <input formControlName="type" type="text"  placeholder="Type" />
+
+        <!-- Description -->
+        <input formControlName="description" type="text"  placeholder="Description" />
+
+        <!-- Assigned To -->
+        <div>
+          <label for="assignedTo">Assigned To</label>
+          <select formControlName="assignedTo" >
+            <option *ngFor="let user of users" [value]="user.firstname + ' ' + user.lastname">
+              {{ user.firstname }} {{ user.lastname }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Deadline -->
+        <input formControlName="deadline" type="date"  placeholder="Deadline" />
+
+        <!-- Priority -->
+        <div>
+          <label for="priority">Priority</label>
+          <select formControlName="priority" >
+            <option value="" disabled>Select Priority</option>
+            <option value="LOW">Low</option>
+            <option value="MEDIUM">Medium</option>
+            <option value="HIGH">High</option>
+          </select>
+        </div>
+
+
+
+
+
+        <!-- Form Buttons -->
+        <div class="buttons">
+          <button type="button" (click)="closeEditForm()">Cancel</button>
+          <button type="submit" [disabled]="!createTaskForm.valid">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,47 @@
+<div class="navigation">
+  <nav>
+    <a [routerLink]="['dashboard']" routerLinkActive="active-tab" [routerLinkActiveOptions]="{exact : true}">
+      <mat-icon svgIcon="home" aria-hidden="false" class="tab"></mat-icon>
+    </a>
+    <a [routerLink]="['/users']" routerLinkActive="active-tab" [routerLinkActiveOptions]="{ exact: false }">
+      <mat-icon svgIcon="users" aria-hidden="false" class="tab"></mat-icon>
+    </a>
+    <a [routerLink]="['/pipeline']" routerLinkActive="active-tab">
+      <mat-icon svgIcon="pipeline" aria-hidden="false" class="tab pipe"></mat-icon>
+    </a>
+    <a [routerLink]="['/candidates']" routerLinkActive="active-tab">
+      <mat-icon svgIcon="candidate" aria-hidden="false" class="tab"></mat-icon>
+    </a>
+    <a [routerLink]="['/task']" routerLinkActive="active-tab">
+      <mat-icon svgIcon="task" aria-hidden="false" class="tab"></mat-icon>
+    </a>
+    <a routerLinkActive="active-tab" [matMenuTriggerFor]="eventMenu" style="background-color: white !important;">
+      <mat-icon svgIcon="calendar" aria-hidden="false" class="tab"></mat-icon>
+    </a>
+    <mat-menu id="menu" #eventMenu="matMenu"  class="user-menu">
+      <button mat-menu-item style="background-color: white !important;" [routerLink]="['/event']">Events</button>
+      <button mat-menu-item style="background-color: white !important;" [routerLink]="['/venue']">Venues</button>
+      <button mat-menu-item style="background-color: white !important;" [routerLink]="['/type']">Event types</button>
+      <button mat-menu-item style="background-color: white !important;" [routerLink]="['/contact']">Contact</button>
+      <button mat-menu-item style="background-color: white !important;" [routerLink]="['/calendar']">Calendar</button>
+    </mat-menu>
+    <a (click)="navlogout()" [routerLink]="['/login']" routerLinkActive="active-tab">
+      <mat-icon svgIcon="logout" aria-hidden="false" class="tab"></mat-icon>
+    </a>
+  </nav>
+  <aside [class.min]="min">
+    <div class="side" [class]="isActiveRoute('/dashboard') ? 'highlight inter-medium' : 'inter-regular'" [routerLink]="['dashboard']">Dashboard</div>
+    <div class="side" [class]="isActive('/users') ? 'highlight inter-medium' : 'inter-regular'" [routerLink]="['/users']">User management</div>
+    <div class="side" [class]="isActiveRoute('/pipeline') ? 'highlight inter-medium' : 'inter-regular'" [routerLink]="['pipeline']">Pipeline management</div>
+    <div class="side" [class]="isActive('/candidates') ? 'highlight inter-medium' : 'inter-regular'" [routerLink]="['/candidates']">Candidates</div>
+    <div class="side" [class]="isActive('/task') ? 'highlight inter-medium' : 'inter-regular'" [routerLink]="['/task']">Task management</div>
+    <div class="side" [matMenuTriggerFor]="eventMenu" routerLinkActive="active-tab">Event management</div>
+    <div (click)="navlogout()" class="side" [class]="isActiveRoute('/login') ? 'highlight inter-medium' : 'inter-regular'" [routerLink]="['/login']">Logout</div>
+  </aside>
+  <div class="menu-burger" (click)="minimize()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+</div>
+<div class="nav-shadow" [class.reduced] = "min"></div>

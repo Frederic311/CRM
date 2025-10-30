@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Assignment</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f9f9f9; color: #333; margin: 0; padding: 0; }
+        .email-container { max-width: 600px; margin: 20px auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); overflow: hidden; }
+        .email-header { background-color: #007BFF; color: #ffffff; padding: 20px; text-align: center; }
+        .email-body { padding: 20px; }
+        .email-footer { background-color: #f1f1f1; padding: 10px; text-align: center; font-size: 12px; color: #666; }
+        .task-details { margin: 20px 0; padding: 15px; background-color: #f7faff; border: 1px solid #dce8f5; border-radius: 5px; }
+        .task-details ul { list-style-type: none; padding: 0; }
+        .task-details li { margin: 10px 0; }
+        .cta-button { display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #007BFF; color: #ffffff; text-decoration: none; border-radius: 5px; font-size: 16px; }
+        .cta-button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+<div class="email-container">
+    <div class="email-header">
+        <h1>New Task Assigned!</h1>
+    </div>
+    <div class="email-body">
+        <p>Hello <span th:text="${name}">User</span>,</p>
+        <p>You have been assigned a new task. Here are the details:</p>
+        <div class="task-details">
+            <ul>
+                <li><strong>Task Name:</strong> <span th:text="${taskName}">Task Name</span></li>
+                <li><strong>Description:</strong> <span th:text="${taskDescription}">Task Description</span></li>
+            </ul>
+        </div>
+        <p>Good luck with your work! If you have any questions, don't hesitate to reach out.</p>
+        <a href="#" class="cta-button">View Task</a>
+    </div>
+    <div class="email-footer">
+        <p>This is an automated message. Please do not reply.</p>
+        <p>&copy; 2024 CRM. All rights reserved.</p>
+    </div>
+</div>
+</body>
+</html>

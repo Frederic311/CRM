@@ -1,0 +1,23 @@
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/CRM_Backend/Event_Management" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/CRM_Backend/auth-service/pom.xml" />
+        <option value="$PROJECT_DIR$/CRM_Backend/api-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/CRM_Backend/service-discovery/pom.xml" />
+        <option value="$PROJECT_DIR$/CRM_Backend/Student_Management_Service/pom.xml" />
+        <option value="$PROJECT_DIR$/Event_Management/pom.xml" />
+        <option value="$PROJECT_DIR$/CRM_Backend/Event_Management_System/pom.xml" />
+        <option value="$PROJECT_DIR$/CRM_Backend/Notification_Service/pom.xml" />
+        <option value="$PROJECT_DIR$/CRM_Backend/Task_Management_Service/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="17" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

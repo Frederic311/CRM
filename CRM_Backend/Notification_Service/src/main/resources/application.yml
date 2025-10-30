@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: notification-service
+
+
+  eureka:
+    client:
+      serviceUrl:
+        defaultZone: http://localhost:8761/eureka/
+
+  management:
+    tracing:
+      sampling:
+        probability: 1.0
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: kamdem.guy@institutsaintjean.org
+    password: osurrusawvgooxam
+    properties:
+      mail.smtp.ssl.trust: smtp.gmail.com
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+      mail.smtp.connectiontimeout: 5000
+      mail.smtp.timeout: 3000
+      mail.smtp.writetimeout: 5000
+
+  twilio:
+    accountSid: AC63598fb1b3c057cd728745a4c016188e
+    authToken: feb1ef7f7578e67b798c5586b6a577b9
+    phoneNumber: +14437072566
+
+server:
+  port: 8085

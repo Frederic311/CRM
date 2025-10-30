@@ -1,0 +1,35 @@
+.main{
+    display: flex;
+    gap: 30px;
+    clear: both;
+}
+
+.main-body{
+    width: 100%;
+    padding-right: 20px;
+    position: relative;
+}
+@font-face {
+  font-family: 'Inter var';
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 100;
+  src: url('/assets/fonts/Inter-roman.var.woff2') format('woff2');
+}
+
+.container {
+  text-align: center;
+  font-family: 'Inter var', sans-serif;
+  padding: 20px;
+  background-color: #C5BFE7; // Add some background for better appearance
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #333;
+}
+
+p {
+  font-size: 1.2rem;
+  color: #666;
+}

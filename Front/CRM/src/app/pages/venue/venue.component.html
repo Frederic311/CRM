@@ -1,0 +1,115 @@
+<div class="container">
+  <h1>Venues ({{ venues.length }})</h1>  <!-- Changed Contacts to Venues -->
+  <button type="button" class="tertiary-btn" (click)="showEdit(null)">Add Venue</button>  <!-- Changed Contact to Venue -->
+</div>
+
+<div class="filter">
+  <p-dropdown
+    [options]="filters"
+    optionLabel="name"
+    [showClear]="true"
+    [formControl]="filter"
+    placeholder="Filter"
+  />
+</div>
+
+<div class="table-container">
+  <div class="tabs">
+    <!-- Add tab filtering logic similar to users if needed -->
+  </div>
+  <div class="table">
+    <table>
+      <thead>
+      <tr>
+        <th><mat-checkbox></mat-checkbox></th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Capacity</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let venue of venues">  <!-- Changed contact to venue -->
+        <td><mat-checkbox></mat-checkbox></td>
+        <td>{{ venue.name }}</td>
+        <td>{{ venue.address }}</td><!-- Changed firstName, lastName to name, location -->
+        <td>{{ venue.capacity }}</td>
+        <td>{{ venue.latitude }}</td>
+        <td>{{ venue.longitude }}</td>
+        <td class="icons">
+          <mat-icon class="edit" svgIcon="edit" (click)="showEdit(venue)">edit</mat-icon>  <!-- Changed contact to venue -->
+          <mat-icon class="delete" svgIcon="delete" (click)="confirmDelete($event, venue.id)">delete</mat-icon>  <!-- Changed contact to venue -->
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Form for editing/creating venue -->
+<div *ngIf="showForm" class="overlay" (click)="closeForm()"></div>
+<div class="editform" *ngIf="showForm">
+  <span class="close-button" (click)="closeForm()">&times;</span>
+  <h2>{{ editVenue ? 'Update Venue' : 'Create Venue' }}</h2>  <!-- Changed Contact to Venue -->
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="name">Name</label>
+      <input id="name" formControlName="name" placeholder="Name" />
+      <div *ngIf="myForm.get('name')?.touched && myForm.get('name')?.invalid">
+        <small *ngIf="myForm.get('name')?.errors?.['required']">Name is required.</small>
+      </div>
+    </div>
+
+    <div>
+      <label for="address">Address</label>
+      <input id="address" formControlName="address" placeholder="Address" />
+      <div *ngIf="myForm.get('address')?.touched && myForm.get('address')?.invalid">
+        <small *ngIf="myForm.get('address')?.errors?.['required']">Address is required.</small>
+      </div>
+    </div>
+
+    <div>
+      <label for="capacity">Capacity</label>
+      <input id="capacity" formControlName="capacity" type="number" placeholder="Capacity" />
+      <div *ngIf="myForm.get('capacity')?.touched && myForm.get('capacity')?.invalid">
+        <small *ngIf="myForm.get('capacity')?.errors?.['required']">Capacity is required.</small>
+        <small *ngIf="myForm.get('capacity')?.errors?.['notPositive']">Capacity must be a positive number.</small>
+      </div>
+    </div>
+
+    <div>
+      <label for="latitude">Latitude</label>
+      <input id="latitude" formControlName="latitude" type="number" placeholder="Latitude" />
+      <div *ngIf="myForm.get('latitude')?.touched && myForm.get('latitude')?.invalid">
+
+        <small *ngIf="myForm.get('latitude')?.errors?.['notPositive']">Latitude must be a positive number.</small>
+      </div>
+    </div>
+
+    <div>
+      <label for="longitude">Longitude</label>
+      <input id="longitude" formControlName="longitude" type="number" placeholder="Longitude" />
+      <div *ngIf="myForm.get('longitude')?.touched && myForm.get('longitude')?.invalid">
+
+        <small *ngIf="myForm.get('longitude')?.errors?.['notPositive']">Longitude must be a positive number.</small>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="loading">{{ editVenue ? 'Update' : 'Create' }}</button>
+  </form>
+
+
+
+</div>
+<ng-template #confirmDeleteDialog let-dialogRef>
+  <h2 mat-dialog-title class="custom-dialog-title">Confirm Delete</h2>
+  <div mat-dialog-content class="custom-dialog-content">Are you sure you want to delete this contact?</div>
+  <div mat-dialog-actions class="custom-dialog-actions">
+    <button mat-button class="custom-dialog-button-no" (click)="ondelnoClick()">Cancel</button>
+    <button mat-button class="custom-dialog-button-yes" (click)="onyesdelClick()">Delete</button>
+  </div>
+</ng-template>
+
+<p-toast></p-toast>
