@@ -29,24 +29,6 @@ Développement d’une solution CRM modulaire en architecture microservices pour
 - `Front/CRM/` – application Angular (UI)
 - `uploads/` – fichiers et ressources uploadées
 
-## Démarrage rapide
-
-1. Lancer MySQL et créer la base de données requise (ex: `authdb`).
-2. Depuis chaque service backend :
-
-```powershell
-# depuis le dossier du service (ex: CRM_Backend/auth-service)
-./mvnw -DskipTests clean package
-./mvnw spring-boot:run -Dspring-boot.run.profiles=dev
-```
-
-3. Depuis `Front/CRM/` :
-
-```powershell
-npm install
-npm start
-```
-
 ## Notes
 
 - Les fichiers de configuration pour les profils (ex: `application-dev.yml`) contiennent les paramètres de connexion à la base de données et les propriétés de Spring Boot.
@@ -54,8 +36,6 @@ npm start
 
 
 ---
-
-File created by assistant: `README_updated.md` — if this looks good I can try to replace `README.md` in-place.
 
 
 
