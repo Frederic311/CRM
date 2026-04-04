@@ -3,6 +3,7 @@ package org.crm.student.application_management_service.service;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import org.crm.student.application_management_service.model.*;
 import org.crm.student.application_management_service.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class CandidateService {
 
@@ -107,7 +109,7 @@ public class CandidateService {
                         candidate.getFirstName()
                 );
             } catch (Exception e) {
-                System.err.println("Failed to send email notification: " + e.getMessage());
+                log.error("Failed to send email notification", e);
             }
 
             try {
@@ -116,7 +118,7 @@ public class CandidateService {
                         "Dear " + candidate.getFirstName() + ", your application status has been updated to STUDENT."
                 );
             } catch (Exception e) {
-                System.err.println("Failed to send SMS notification: " + e.getMessage());
+                log.error("Failed to send SMS notification", e);
             }
         }
     }
@@ -148,7 +150,7 @@ public class CandidateService {
         try {
             return Status.valueOf(status.toUpperCase());
         } catch (IllegalArgumentException e) {
-            System.err.println("Invalid status: " + status + ". Defaulting to NEW.");
+            log.warn("Invalid status: {}. Defaulting to NEW.", status);
             return Status.NEW; // Default value
         }
     }

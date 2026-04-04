@@ -30,7 +30,6 @@ export class UpdateCandidateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('UpdateCandidateComponent initialized'); // Debugging statement
     this.getCandidate();
   }
 
@@ -39,7 +38,6 @@ export class UpdateCandidateComponent implements OnInit {
     if (id) {
       this.CandidateServiceService.getCandidate(id).subscribe({
         next: (candidate) => {
-          console.log('Fetched candidate:', candidate); // Debugging statement
           this.candidate = candidate;
 
           // Fetch and set profile photo for the candidate
@@ -54,26 +52,23 @@ export class UpdateCandidateComponent implements OnInit {
             });
           }
         },
-        error: (error) => {
-          console.error('Error fetching candidate:', error); // Debugging statement
-        }
+        error: () => {}
       });
-    } else {
-      console.error('No candidate ID found in route'); // Debugging statement
     }
   }
 
   updateCandidate(): void {
     if (this.candidate?.id) {
-      this.CandidateServiceService.updateCandidateInformation(this.candidate.id, this.candidate).subscribe(updatedCandidate => {
-        console.log('Candidate updated:', updatedCandidate);
-        let message = 'Updated successfully';
-        this.messageService.add({ severity: 'success', summary: 'Confirmed', detail: message });
-      }, error => {
-        console.error('Error updating candidate:', error);
-        let message = 'An error occured try again later';
-        this.messageService.add({ severity: 'error', summary: 'Cancelled', detail: message });
-      });
+      this.CandidateServiceService.updateCandidateInformation(this.candidate.id, this.candidate).subscribe(
+        () => {
+          let message = 'Updated successfully';
+          this.messageService.add({ severity: 'success', summary: 'Confirmed', detail: message });
+        },
+        () => {
+          let message = 'An error occured try again later';
+          this.messageService.add({ severity: 'error', summary: 'Cancelled', detail: message });
+        }
+      );
     }
   }
 

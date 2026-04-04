@@ -47,9 +47,7 @@ export class CalenderComponent implements OnInit {
         };
 
       },
-      (error) => {
-        console.error('Error fetching events:', error);
-      }
+      () => {}
     );
   }
 }

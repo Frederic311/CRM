@@ -70,7 +70,6 @@ export class HeaderComponent implements OnInit, OnDestroy{
       },
       error: (error) => {
         this.errorMessage = 'Error retrieving user information'; // Handle error here
-        console.error('Error:', error); // Log error for debugging
       }
     });
   }
@@ -81,7 +80,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
       next: (blob) => {
         this.imageUrl = URL.createObjectURL(blob); // Convert Blob to URL
       },
-      error: (error) => console.error("Error loading photo", error)
+      error: (error) => {}
     });
   }
 
@@ -155,13 +154,12 @@ export class HeaderComponent implements OnInit, OnDestroy{
             },
             error: (err) => {
               this.loading = false;
-              console.error('Error creating user:', err);
+              this.errorMessage = 'Error creating user';
             }
           });
         },
         error: (err)=>{
           this.loading = false;
-          console.error('Error getting role:', err);
         }
       });
     }

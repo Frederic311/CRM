@@ -172,7 +172,6 @@ export class CandidateFormComponent implements AfterViewInit{
     if (stepNumberElem) {
       stepNumberElem.innerHTML = this.formNumber.toString();
     }
-    console.log(this.formNumber.toString())
     this.stepListItems.forEach((item, index) => {
       item.nativeElement.classList.toggle('active', index <= this.formNumber);
     });
@@ -243,16 +242,12 @@ export class CandidateFormComponent implements AfterViewInit{
         responsibilities: this.mainFormGroup.get('workExperience')?.get('responsibilities')?.value
       };
 
-      console.log(form);
-
       this.candidateService.createCandidateWithoutheader(form).subscribe({
         next: (response) => {
-          console.log('Candidate created successfully');
           this.candidateId = response.id;
           alert(response);
         },
-        error: (error) => {
-          console.error('Error creating candidate:', error);
+        error: () => {
           alert('Failed to create candidate. Please try again.');
         }
       });
@@ -265,19 +260,16 @@ export class CandidateFormComponent implements AfterViewInit{
     const f = event.files[0]; // Assuming a single file
     const formData = new FormData();
     formData.append('file', f, f.name);
-    console.log(formData);
 
     this.http.post(uploadUrl, formData).subscribe({
-        next: (response) => {
-          console.log('Upload successful', response)
+        next: () => {
           this.messageService.add({
             severity: 'info',
             summary: 'File Uploaded',
             detail: 'Files have been uploaded successfully!'
           });
         },
-        error: (err) => {
-          console.error('Upload failed', err)
+        error: () => {
           this.messageService.add({
             severity: 'error',
             summary: 'Error uploading',
@@ -297,18 +289,15 @@ export class CandidateFormComponent implements AfterViewInit{
         const formData = new FormData();
         formData.append('file', element, element.name);
         formData.append('documentType', 'document');
-        console.log(formData.get('file'));
         this.http.post(uploadUrl, formData).subscribe({
-          next: (response) => {
-            console.log('Upload successful', response)
+          next: () => {
             this.messageService.add({
               severity: 'info',
               summary: 'Documents Upload',
               detail: 'Files have been uploaded successfully!'
             });
           },
-          error: (err) => {
-            console.error('Upload failed', err)
+          error: () => {
             this.messageService.add({
               severity: 'error',
               summary: 'Error uploading',

@@ -16,7 +16,6 @@ export class AuthService {
 
 // Method to handle errors
 private handleError(error: any) {
-  console.error('An error occurred:', error); // Log the error
   let errorMessage = 'Something bad happened; please try again later.';
   if (error.error instanceof ErrorEvent) {
     // A client-side or network error occurred.
@@ -98,9 +97,7 @@ private handleError(error: any) {
           localStorage.removeItem('jwtToken');
           this.router.navigate(['/login']);
         },
-        (error) => {
-          console.error('Error during logout:', error);
-        }
+        () => {}
       );
     } else {
       this.router.navigate(['/login']);
@@ -112,13 +109,10 @@ private handleError(error: any) {
     const token = this.getToken();
     if (token) {
       this.http.post(`${this.baseUrl}logout`, { token }, { responseType: 'text' }).subscribe(
-        (response) => {
-          console.log(response); // Should log "Logout successful."
+        () => {
           localStorage.removeItem('jwtToken');
         },
-        (error) => {
-          console.error('Error during token clearance on reload:', error);
-        }
+        () => {}
       );
     }
   }

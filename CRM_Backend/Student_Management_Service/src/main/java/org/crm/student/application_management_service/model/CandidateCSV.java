@@ -10,10 +10,12 @@ import lombok.Setter;
 
 import com.opencsv.bean.CsvBindByName;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.crm.student.application_management_service.service.LocalDateTimeConverter;
 
 import java.time.LocalDateTime;
 
+@Slf4j
 @Data
 public class CandidateCSV {
 
@@ -85,7 +87,7 @@ public class CandidateCSV {
             return Status.valueOf(status.toUpperCase()); // Convert to upper case to match enum values
         } catch (IllegalArgumentException e) {
             // Handle the case where the status is invalid
-            System.err.println("Invalid status: " + status + ". Defaulting to NEW.");
+            log.warn("Invalid status: {}. Defaulting to NEW.", status);
             return Status.NEW; // Default value
         }
     }

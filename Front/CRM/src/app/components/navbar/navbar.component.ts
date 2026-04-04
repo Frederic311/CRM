@@ -68,7 +68,6 @@ export class NavbarComponent {
 
   minimize(){
     this.min = !this.min;
-    console.log(this.min);
     if (!this.min) {
       const sides = document.querySelectorAll<HTMLDivElement>('.side');
       sides.forEach((side) => {

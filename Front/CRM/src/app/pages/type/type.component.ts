@@ -109,8 +109,7 @@ export class TypeComponent implements OnInit { // Changed to TypeComponent
         this.closeForm();
         this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Type created successfully' });
       },
-      error: (err) => {
-        console.error('Error creating type', err); // Changed to type
+      error: () => {
         this.loading = false;
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Could not create type' });
       }
@@ -127,8 +126,7 @@ export class TypeComponent implements OnInit { // Changed to TypeComponent
         this.closeForm();
         this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Type updated successfully' });
       },
-      error: (err) => {
-        console.error('Error updating type', err); // Changed to type
+      error: () => {
         this.loading = false;
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Could not update type' });
       }
@@ -138,12 +136,9 @@ export class TypeComponent implements OnInit { // Changed to TypeComponent
   getTypes(): void { // Changed to getTypes
     this.typeService.getAllTypes().subscribe({ // Changed to typeService
       next: (response) => {
-        console.log('Types:', response); // Add this log to inspect the data
         this.types = response; // Changed to types
       },
-      error: (err) => {
-        console.error('Error getting types', err); // Changed to types
-      }
+      error: () => {}
     });
   }
 
