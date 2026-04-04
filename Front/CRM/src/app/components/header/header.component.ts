@@ -80,7 +80,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
       next: (blob) => {
         this.imageUrl = URL.createObjectURL(blob); // Convert Blob to URL
       },
-      error: (error) => {}
+      error: () => {}
     });
   }
 

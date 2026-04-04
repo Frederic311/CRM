@@ -65,7 +65,7 @@ export class UpdateCandidateComponent implements OnInit {
           this.messageService.add({ severity: 'success', summary: 'Confirmed', detail: message });
         },
         () => {
-          let message = 'An error occured try again later';
+          let message = 'An error occurred try again later';
           this.messageService.add({ severity: 'error', summary: 'Cancelled', detail: message });
         }
       );
