@@ -16,8 +16,8 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: kamdem.guy@institutsaintjean.org
-    password: osurrusawvgooxam
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
     properties:
       mail.smtp.ssl.trust: smtp.gmail.com
       mail.smtp.auth: true
@@ -27,9 +27,9 @@ spring:
       mail.smtp.writetimeout: 5000
 
   twilio:
-    accountSid: AC63598fb1b3c057cd728745a4c016188e
-    authToken: feb1ef7f7578e67b798c5586b6a577b9
-    phoneNumber: +14437072566
+    accountSid: ${TWILIO_ACCOUNT_SID}
+    authToken: ${TWILIO_AUTH_TOKEN}
+    phoneNumber: ${TWILIO_PHONE_NUMBER}
 
 server:
   port: 8085

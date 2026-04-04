@@ -58,7 +58,6 @@ export class UserdetailsComponent implements OnInit, OnDestroy{
   }
   ngOnInit(): void {
     this.userId = this.route.snapshot.paramMap.get('id');
-    console.log(this.userId);
     this.breadcrumbItems = [
       { label: 'Users', routerLink: '/users' },
       { label: `Profile: ${this.userId}`, routerLink: `/users/${this.userId}` }
@@ -67,15 +66,12 @@ export class UserdetailsComponent implements OnInit, OnDestroy{
     this.userService.getUserById(this.userId).subscribe({
       next: (result) => {
         this.user = result;
-        console.log("user",this.user);
         if (this.user.profilePhoto&&this.userId) {
           this.getImage(this.user.id);
         }
         this.initializeForm();
       },
-      error: (err) => {
-        console.log(err);
-      }  
+      error: () => {}
     });
   }
 
@@ -85,7 +81,7 @@ export class UserdetailsComponent implements OnInit, OnDestroy{
       next: (blob) => {
         this.imageUrl = URL.createObjectURL(blob); // Convert Blob to URL
       },
-      error: (error) => console.error("Error loading photo", error)
+      error: () => {}
     });
   }
   
@@ -116,7 +112,6 @@ export class UserdetailsComponent implements OnInit, OnDestroy{
         this.previewUrl = reader.result;
         this.imageUrl = null
         this.image = file;
-        console.log(this.image);
       };
       
       // Read the file as a data URL
@@ -160,61 +155,43 @@ export class UserdetailsComponent implements OnInit, OnDestroy{
         next: (roledata) => {
           updatedUser.roles[0].id = roledata.id;
           updatedUser.roles[0].name = roledata.name;
-          console.log("Updated user: ",updatedUser);
           this.userService.updateUser(updatedUser, this.user.id).subscribe({
-            next: (result) => {
-              console.log('User updated successfully', result);
+            next: () => {
               if (this.image) {
                 this.uploadProfilePhoto();
               } else {
                 this.userService.getUserById(this.userId).subscribe({
                   next: (result) => {
                     this.user = result;
-                    console.log("user",this.user);
                     if (this.user.profilePhoto&&this.userId) {
                       this.getImage(this.user.id);
                     }
                   },
-                  error: (err) => {
-                    console.log(err);
-                  }  
+                  error: () => {}
                 });
               }
             },
-            error: (err) => {
-              console.log('Error updating user', err);
-            }
+            error: () => {}
           });
         },
-        error: (err) => {
-          console.log('Error getting role', err);
-        }
+        error: () => {}
       })
-    } else {
-      console.log('Form is invalid');
     }
   }
 
 
   uploadProfilePhoto(){
     this.userService.uploadImage(this.image, this.user.id).subscribe({
-      next: (imageUrl) => {
-        console.log('Image uploaded successfully:', imageUrl);
+      next: () => {
         this.userService.getUserById(this.userId).subscribe({
           next: (result) => {
             this.user = result;
             this.getImage(this.user.id)
-            console.log("user",this.user);
           },
-          error: (err) => {
-            console.log(err);
-          }  
+          error: () => {}
         });
       },
-      error: (error) => {
-        // Handle errors
-        console.error('Error uploading image:', error);
-      }
+      error: () => {}
     });
   }
 }

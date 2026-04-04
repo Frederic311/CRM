@@ -69,7 +69,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.calculateYearlyChangeCandidates();
     this.calculateYearlyChangeStudents();
     this.calculateYearlyChangeEvents();
-    console.log("basicData", this.basicData);
   }
 
   ngAfterViewInit() {
@@ -201,9 +200,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       (data) => {
         this.tasks = data;
       },
-      (error) => {
-        console.error('Error loading tasks:', error);
-      }
+      () => {}
     );
   }
 
@@ -242,7 +239,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.currentWeekCount,
         this.previousWeekCount
       );
-      console.log("percentageChange", this.percentageChange);
     });
   }
 
@@ -284,9 +280,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         previousYearCandidates
       );
       
-      console.log("currentYearCandidates", currentYearCandidates);
-      console.log("previousYearCandidates", previousYearCandidates);
-      console.log("percentageChangeCandidates", this.percentageChangeCandidates);
     });
   }
 
@@ -319,9 +312,6 @@ calculateYearlyChangeStudents() {
       previousYearStudents
     );
 
-    console.log("currentYearStudents", currentYearStudents);
-    console.log("previousYearStudents", previousYearStudents);
-    console.log("percentageChangeStudents", this.percentageChangeStudents);
   });
 }
 
@@ -355,9 +345,6 @@ calculateYearlyChangeEvents() {
       previousYearEvents
     );
 
-    console.log("currentYearEvents", currentYearEvents);
-    console.log("previousYearEvents", previousYearEvents);
-    console.log("percentageChangeEvents", this.percentageChangeEvents);
   });
 }
 

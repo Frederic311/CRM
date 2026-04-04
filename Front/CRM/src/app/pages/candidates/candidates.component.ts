@@ -85,14 +85,12 @@ export class CandidatesComponent implements OnInit{
         (data) => {
           this.candidates = data;
           this.filteredCandidates = [...this.candidates];
-          console.log(this.candidates);
         },
-        (error) => console.error(error)
+        () => {}
       );
 
       this.filter.valueChanges.subscribe(value => {
         if (value) {
-          console.log('Dropdown value changed:', value);
           this.selectedFilter = (value as { name: string })?.name;
         }
       });
@@ -101,8 +99,6 @@ export class CandidatesComponent implements OnInit{
   viewCandidate(id: string): void {
     if (id) {
       this.router.navigate([`/candidate/${id}`]);
-    } else {
-      console.error('Candidate ID is undefined or empty');
     }
   }
 
@@ -140,8 +136,6 @@ deleteCandidate(candidate: Candidate) {
 editCandidate(id: string): void {
   if (id) {
     this.router.navigate([`/update-candidate/${id}`]);
-  } else {
-    console.error('Candidate ID is undefined or empty');
   }
 }
 

@@ -41,13 +41,10 @@ export class LoginComponent implements OnInit, OnDestroy{
 
     this.authService.loginUser(credentials).subscribe(
       response => {
-        console.log('User logged in successfully', response.message);
         this.authService.saveToken(response.token); // Save the token
-        console.log('Navigating to /dashboard');
         this.router.navigate(['/dashboard']);
       },
       error => {
-        console.error('Error logging in', error);
         this.errorMessage = this.getErrorMessage(error.error.businessErrorCode);
       }
     );

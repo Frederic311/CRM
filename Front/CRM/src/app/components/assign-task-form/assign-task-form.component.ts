@@ -33,7 +33,6 @@ export class AssignTaskFormComponent implements OnInit,AfterViewInit {
 
   ngAfterViewInit() {
     if (this.container) {
-      console.log('hey');
       this.container.nativeElement.addEventListener('click', (event: any) => {
         if (event.target === this.container.nativeElement) {
           this.hideForm();
@@ -47,9 +46,7 @@ export class AssignTaskFormComponent implements OnInit,AfterViewInit {
       next: response => {
         this.users = response;
       },
-      error: err =>{
-        console.error('Error getting users', err);
-      }
+      error: () => {}
     });
   }
 
@@ -58,21 +55,16 @@ export class AssignTaskFormComponent implements OnInit,AfterViewInit {
       next: response => {
         this.tasks = response;
       },
-      error: err =>{
-        console.error('Error getting tasks', err);
-      }
+      error: () => {}
     });
   }
 
   updateTask(id: number,task: any){
     this.taskService.updateTask(id,task).subscribe({
-      next: response => {
-        console.log('Task updated successfully', response);
+      next: () => {
         this.getTasks();
       },
-      error: err =>{
-        console.error('Error updating task', err);
-      }
+      error: () => {}
     });
   }
 
@@ -81,7 +73,6 @@ export class AssignTaskFormComponent implements OnInit,AfterViewInit {
   }
 
   assign(){
-    console.log(this.assignForm.value);
     if (this.assignForm.value.task && this.assignForm.value.user) {
       let task = this.assignForm.value.task;
       task.candidateFullname = this.assignForm.value.user;

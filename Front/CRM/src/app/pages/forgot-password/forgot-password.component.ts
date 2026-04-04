@@ -27,13 +27,11 @@ export class ForgotPasswordComponent {
     this.successMessage = ''; // Clear previous success messages
 
     this.authService.forgotPassword(this.email).subscribe(
-      response => {
-        console.log(response);
+      () => {
         this.successMessage = 'A password reset link has been sent to your email.';
         this.step = 2; // Go to verification step
       },
       error => {
-        console.error(error);
         this.errorMessage = error; // Show the error from the service
       }
     );
@@ -43,8 +41,7 @@ export class ForgotPasswordComponent {
   resetPassword() {
     this.errorMessage = ''; // Clear any previous error messages
     this.authService.resetPassword(this.token, this.newPassword).subscribe(
-      response => {
-        console.log(response);
+      () => {
         this.errorMessage = ''; // Clear the error message on success
         this.successMessage = 'Password has been reset successfully! You will be redirected to the login page in 5 seconds.';
         let countdown = 5;
@@ -60,7 +57,6 @@ export class ForgotPasswordComponent {
         }, 1000); // Update every second
       },
       error => {
-        console.error(error);
         this.errorMessage = error; // Show the error from the service
       }
     );
@@ -69,15 +65,13 @@ export class ForgotPasswordComponent {
   verifyToken() {
     this.errorMessage = ''; // Clear any previous error messages
     this.authService.verifyToken(this.token).subscribe(
-      response => {
-        console.log(response);
+      () => {
         this.errorMessage = ''; // Clear the error message on success
         this.successMessage = 'Token verified successfully!';
         // Proceed to the next step or show a success message
         this.step = 3;
       },
       error => {
-        console.error(error);
         this.errorMessage = error; // Show the error from the service
       }
     );

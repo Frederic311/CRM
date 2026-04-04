@@ -25,7 +25,6 @@ export class CandidateDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log('CandidateDetailComponent initialized'); // Debugging statement
     this.getCandidate();
   }
 
@@ -44,7 +43,6 @@ export class CandidateDetailComponent implements OnInit {
     if (id) {
       this.CandidateServiceService.getCandidate(id).subscribe({
         next: (candidate) => {
-          console.log('Fetched candidate:', candidate); // Debugging statement
           this.candidate = candidate;
 
           // Fetch and set profile photo for the candidate
@@ -59,12 +57,8 @@ export class CandidateDetailComponent implements OnInit {
             });
           }
         },
-        error: (error) => {
-          console.error('Error fetching candidate:', error); // Debugging statement
-        }
+        error: () => {}
       });
-    } else {
-      console.error('No candidate ID found in route'); // Debugging statement
     }
   }
 

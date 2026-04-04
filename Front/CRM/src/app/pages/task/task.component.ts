@@ -110,16 +110,14 @@ export class TaskComponent implements OnInit {
       },
       error: (error) => {
         this.errorMessage = 'Error retrieving user information'; // Handle error here
-        console.error('Error:', error); // Log error for debugging
       }
     });
     this.CandidateServiceService.getCandidates().subscribe({
       next: (data) => {
         this.candidate = data;
       },
-      error: (error) => {
+      error: () => {
         this.errorMessage = 'Error retrieving candidate information'; // Handle error here
-        console.error('Error:', error); // Log error for debugging
       }
     });
     this.loadTasks();
@@ -130,9 +128,7 @@ export class TaskComponent implements OnInit {
       (data) => {
         this.candidate = data;
       },
-      (error) => {
-        console.error('Error loading users:', error);
-      }
+      () => {}
     );
     completed: new FormControl(false)
   }
@@ -142,9 +138,7 @@ export class TaskComponent implements OnInit {
       (data) => {
         this.users = data;
       },
-      (error) => {
-        console.error('Error loading users:', error);
-      }
+      () => {}
     );
   }
   loadTasks(): void {
@@ -153,9 +147,7 @@ export class TaskComponent implements OnInit {
         this.tasks = data;
         this.filteredTasks = data;
       },
-      (error) => {
-        console.error('Error loading tasks:', error);
-      }
+      () => {}
     );
   }
   exportTable(format: 'csv' | 'xlsx'): void {
@@ -284,14 +276,11 @@ export class TaskComponent implements OnInit {
       };
 
       this.taskService.createTask(payload).subscribe(
-        (response) => {
-          console.log('Task created successfully:', response);
+        () => {
           this.closeForm(); // Reset and close the form
           this.loadTasks(); // Refresh the task list
         },
-        (error) => {
-          console.error('Error creating task:', error);
-        }
+        () => {}
       );
     }
   }
@@ -336,7 +325,6 @@ export class TaskComponent implements OnInit {
   }
   onCompletedChange(task: any, event: MatCheckboxChange) {
     if (!task || !task.id) {
-      console.error('Task or Task ID is undefined');
       return; // Exit early if task is undefined or id is missing
     }
 
@@ -356,8 +344,7 @@ export class TaskComponent implements OnInit {
               });
             }
           },
-          error: (err) => {
-            console.error(`failed to mark task as completed; deadline has passed. ${err.message}`);
+          error: () => {
             this.messageService.add({
               severity: 'error',
               summary: 'Error',
@@ -366,8 +353,6 @@ export class TaskComponent implements OnInit {
           }
         });
       }
-    } else {
-      console.error('Task ID is undefined');
     }
   }
 
