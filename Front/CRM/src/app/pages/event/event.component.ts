@@ -133,16 +133,13 @@ export class EventComponent implements OnInit {
     this.editEvent = null;
   }
 
-  createEvent(): void { this.loading = true; const newEvent = { ...this.myForm.value }; console.log('Before formatting:', newEvent); newEvent.start = this.formatDate(newEvent.start); newEvent.end = this.formatDate(newEvent.end); console.log('Selected type ID:', newEvent.type); console.log('Selected venue object:', newEvent.venue); this.eventService.createEvent(newEvent).subscribe({ next: () => { console.log('Event created successfully'); this.getEvents(); this.loading = false; this.closeForm(); this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Event created successfully' }); }, error: (err) => { console.error('Error creating event', err); this.loading = false; this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Could not create event' }); } }); } updateEvent(): void { this.loading = true; const updatedEvent = { ...this.myForm.value }; console.log('Before formatting:', updatedEvent); updatedEvent.start = this.formatDate(updatedEvent.start); updatedEvent.end = this.formatDate(updatedEvent.end); console.log('Selected type ID:', updatedEvent.type); console.log('Selected venue object:', updatedEvent.venue); this.eventService.updateEvent(updatedEvent, this.id).subscribe({ next: () => { console.log('Event updated successfully'); this.getEvents(); this.loading = false; this.closeForm(); this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Event updated successfully' }); }, error: (err) => { console.error('Error updating event', err); this.loading = false; this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Could not update event' }); } }); }
+  createEvent(): void { this.loading = true; const newEvent = { ...this.myForm.value }; newEvent.start = this.formatDate(newEvent.start); newEvent.end = this.formatDate(newEvent.end); this.eventService.createEvent(newEvent).subscribe({ next: () => { this.getEvents(); this.loading = false; this.closeForm(); this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Event created successfully' }); }, error: () => { this.loading = false; this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Could not create event' }); } }); } updateEvent(): void { this.loading = true; const updatedEvent = { ...this.myForm.value }; updatedEvent.start = this.formatDate(updatedEvent.start); updatedEvent.end = this.formatDate(updatedEvent.end); this.eventService.updateEvent(updatedEvent, this.id).subscribe({ next: () => { this.getEvents(); this.loading = false; this.closeForm(); this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Event updated successfully' }); }, error: () => { this.loading = false; this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Could not update event' }); } }); }
   getEvents(): void {
     this.eventService.getAllEvents().subscribe({
       next: (response) => {
-        console.log('Events:', response);
         this.events = response;
       },
-      error: (err) => {
-        console.error('Error getting events', err);
-      }
+      error: () => {}
     });
   }
 
@@ -151,9 +148,7 @@ export class EventComponent implements OnInit {
       next: (response) => {
         this.types = response;
       },
-      error: (err) => {
-        console.error('Error getting types', err);
-      }
+      error: () => {}
     });
   }
 
@@ -162,21 +157,16 @@ export class EventComponent implements OnInit {
       next: (response) => {
         this.venues = response;
       },
-      error: (err) => {
-        console.error('Error getting venues', err);
-      }
+      error: () => {}
     });
   }
 
   getContacts(): void {
     this.contactService.getAllContacts().subscribe({
       next: (response) => {
-        console.log('Contacts:', response);
         this.contacts = response;
       },
-      error: (err) => {
-        console.error('Error getting contacts', err);
-      }
+      error: () => {}
     });
   }
 

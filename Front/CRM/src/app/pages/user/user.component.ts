@@ -92,21 +92,18 @@ export class UserComponent implements OnInit, OnDestroy {
   }
   ngOnInit(): void {
     this.getUsers();
-    console.log(this.filter.value);
 
     // Subscribe to changes in the FormControl
     this.filter.valueChanges.subscribe(value => {
       if (value) {
         this.selectedFilter = (value as { name: string })?.name;
       }
-      console.log('Dropdown value changed:', value);
     });
 
 
     // Subscribe to user creation event
     this.subscription = this.userService.userCreated$.subscribe(() => {
       // Handle the change when a new user is created
-      console.log('User has been created!');
       this.getUsers();
     });
   }
@@ -150,13 +147,11 @@ export class UserComponent implements OnInit, OnDestroy {
     this.edituser.password = this.myForm.get('password')?.value;
     this.edituser.enabled = this.myForm.get('enabled')?.value;
 
-    console.log(this.edituser);
     this.userService.getRole(this.myForm.get('role')?.get('name')?.value).subscribe({
       next: (roledata)=>{
           this.edituser.roles[0].id = roledata.id;
           this.userService.updateUser(this.edituser, this.id).subscribe({
-          next: response => {
-            console.log("successfully updated");
+          next: () => {
             this.userService.getAllUsers().subscribe(users => {
               this.users = users;
             });
@@ -164,16 +159,14 @@ export class UserComponent implements OnInit, OnDestroy {
             this.closeForm();
             this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'User Profile updated' });
           },
-          error: err => {
-            console.error('Error updating user', err);
+          error: () => {
             this.loading = false;
             this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'Could not update the user' });
           }
         });
       },
-      error: (err)=>{
+      error: ()=>{
         this.loading = false;
-        console.error('Error getting role:', err);
       }
     })
 }
@@ -183,21 +176,17 @@ export class UserComponent implements OnInit, OnDestroy {
       next: response => {
         this.users = response;
       },
-      error: err =>{
-        console.error('Error getting users', err);
-      }
+      error: () => {}
     });
   }
 
   deleteUser(id:number){
     this.userService.deleteUser(id).subscribe({
-      next: response => {
-        console.log('User deleted successfully', response);
+      next: () => {
         this.users = this.users.filter(user => user.id !== id);
         this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Record deleted' });
       },
-      error: err => {
-        console.error('Error deleting user', err);
+      error: () => {
         this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'Could not delete the user' });
       }
     });
@@ -209,8 +198,7 @@ export class UserComponent implements OnInit, OnDestroy {
 
 
   confirmDeletion(event: Event, id:number) {
-    event.stopPropagation(); 
-    console.log(id);
+    event.stopPropagation();
     this.confirmationService.confirm({
         target: event.target as EventTarget,
         message: 'Do you want to delete this user?',
@@ -252,7 +240,6 @@ tabs = [
   totalRecords: number = 100;  // Total number of records
 
   onPageChange(event: any) {
-    console.log('Page event: ', event);
   }
 
   show(){

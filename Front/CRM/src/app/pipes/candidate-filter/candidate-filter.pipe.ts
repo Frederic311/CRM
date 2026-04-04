@@ -6,10 +6,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class CandidateFilterPipe implements PipeTransform {
   transform(users: any[], fieldName: string | null = null, filterValue: string | null = null, isAscending: boolean = true): any[] {
-    console.log("fieldName: "+fieldName);
-    console.log("filterValue: "+filterValue);
-    console.log("isAscending: "+isAscending);
-
     let filteredUsers: any[] = users;
 
     if (fieldName && !filterValue) {
@@ -29,8 +25,6 @@ export class CandidateFilterPipe implements PipeTransform {
         }
         return 0; // When values are equal
       });
-    
-      console.log("sorted values", filteredUsers);
     }
     
     if (!fieldName && !filterValue) {
@@ -44,7 +38,6 @@ export class CandidateFilterPipe implements PipeTransform {
         }
           return 0; // When values are equal
       });
-      console.log("sorted values", filteredUsers);
     }
     return filteredUsers;
   }

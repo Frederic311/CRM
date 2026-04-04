@@ -116,8 +116,7 @@ export class ContactComponent implements OnInit {
         this.closeForm();
         this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Contact created successfully' });
       },
-      error: (err) => {
-        console.error('Error creating contact', err);
+      error: () => {
         this.loading = false;
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Could not create contact' });
       }
@@ -134,8 +133,7 @@ export class ContactComponent implements OnInit {
         this.closeForm();
         this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Contact updated successfully' });
       },
-      error: (err) => {
-        console.error('Error updating contact', err);
+      error: () => {
         this.loading = false;
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Could not update contact' });
       }
@@ -145,12 +143,9 @@ export class ContactComponent implements OnInit {
   getContacts(): void {
     this.contactService.getAllContacts().subscribe({
       next: (response) => {
-        console.log('Contacts:', response); // Add this log to inspect the data
         this.contacts = response;
       },
-      error: (err) => {
-        console.error('Error getting contacts', err);
-      }
+      error: () => {}
     });
   }
 

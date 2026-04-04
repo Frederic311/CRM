@@ -28,7 +28,6 @@ export class UserService {
   updateUser(user:any, id: number):Observable<HttpResponse<void>>{
     const url = `${this.base_url}/update-user/${id}`;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    console.log(user);
     return this.http.put<void>(url, user, {
       headers,
       observe: 'response',

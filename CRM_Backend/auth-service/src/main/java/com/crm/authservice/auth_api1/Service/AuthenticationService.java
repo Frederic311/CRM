@@ -12,6 +12,7 @@ import com.crm.authservice.auth_api1.models.Token;
 import com.crm.authservice.auth_api1.models.User;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -30,6 +31,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
@@ -306,7 +308,7 @@ public class AuthenticationService {
                     "Your password has been successfully reset. If you did not request this change, please contact support."
             );
         } catch (MessagingException e) {
-            e.printStackTrace();
+            log.error("Failed to send password reset confirmation email", e);
         }
     }
 

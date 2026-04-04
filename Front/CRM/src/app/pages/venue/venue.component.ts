@@ -124,8 +124,7 @@ export class VenueComponent implements OnInit {
         this.closeForm();
         this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Venue created successfully' });
       },
-      error: (err) => {
-        console.error('Error creating venue', err);  // Changed contact to venue
+      error: () => {
         this.loading = false;
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Could not create venue' });
       }
@@ -142,8 +141,7 @@ export class VenueComponent implements OnInit {
         this.closeForm();
         this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Venue updated successfully' });
       },
-      error: (err) => {
-        console.error('Error updating venue', err);  // Changed contact to venue
+      error: () => {
         this.loading = false;
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Could not update venue' });
       }
@@ -153,12 +151,9 @@ export class VenueComponent implements OnInit {
   getVenues(): void {  // Changed getContacts to getVenues
     this.venueService.getAllVenues().subscribe({  // Changed contactService to venueService
       next: (response) => {
-        console.log('Venues:', response);  // Changed contacts to venues
         this.venues = response;  // Changed contacts to venues
       },
-      error: (err) => {
-        console.error('Error getting venues', err);  // Changed contacts to venues
-      }
+      error: () => {}
     });
   }
 

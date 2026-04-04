@@ -107,19 +107,14 @@ export class PipelineComponent implements OnInit {
 
 
   dragStart(candidate: Candidate, columnIndex: number) {
-    console.log('Drag started', candidate, columnIndex);
     this.draggedCandidate = { ...candidate, columnIndex };
   }
 
   drop(event: any, columnIndex: number) {
-    console.log('Drop initiated', columnIndex);
-
     // Check if the dragged candidate is being dropped in the same column
     if (this.draggedCandidate && this.draggedCandidate.columnIndex === columnIndex) {
-        console.log('Dropped in the same column, no action taken');
         return; // Exit the method if it's the same column
     } else if (this.draggedCandidate && this.draggedCandidate.columnIndex === 3) {
-        console.log('Dragging from the student column is not allowed');
         return; // Exit the method if the dragged candidate is from the student column
     } else {
         // Handle the drop in a different column
@@ -130,16 +125,10 @@ export class PipelineComponent implements OnInit {
 
 
   onYesClick() {
-    console.log('Yes clicked');
-    console.log('Dragged Candidate:', this.draggedCandidate);
-    console.log('Target Column Index:', this.columnIndex);
-
     if (this.draggedCandidate && this.draggedCandidate.columnIndex !== undefined && this.columnIndex !== null) {
       const draggedCandidateIndex = this.columns[this.draggedCandidate.columnIndex].candidates.findIndex(c => c.id === this.draggedCandidate!.id);
       if (draggedCandidateIndex !== -1) {
-        console.log('Removing candidate from original column');
         this.columns[this.draggedCandidate.columnIndex].candidates.splice(draggedCandidateIndex, 1);
-        console.log('Adding candidate to new column');
         this.columns[this.columnIndex].candidates.push(this.draggedCandidate);
 
         // Update candidate status in the database
@@ -150,7 +139,6 @@ export class PipelineComponent implements OnInit {
 
         this.CandidateServiceService.updateCandidateStatus(this.draggedCandidate.id!, status).subscribe({
           next: () => {
-            console.log('Candidate status updated successfully');
             let message = 'Candidate moved successfully';
             if (status === 'STUDENT') {
               message += ', An email is sent to the new student';
@@ -158,8 +146,7 @@ export class PipelineComponent implements OnInit {
             this.messageService.add({ severity: 'success', summary: 'Confirmed', detail: message });
             this.dialog.closeAll();
           },
-          error: (err) => {
-            console.error('Error updating candidate status:', err);
+          error: () => {
             this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to update candidate status' });
           }
         });
@@ -223,27 +210,21 @@ deleteCandidate(candidate: Candidate) {
   viewCandidate(id: string): void {
     if (id) {
       this.router.navigate([`/candidate/${id}`]);
-    } else {
-      console.error('Candidate ID is undefined or empty');
     }
   }
 
   updateCandidate(candidate: Candidate) {
     if (candidate.id) {
-      this.CandidateServiceService.updateCandidateInformation(candidate.id, candidate).subscribe(updatedCandidate => {
-        // Handle the updated candidate data here
-        console.log('Candidate updated:', updatedCandidate);
-      }, error => {
-        console.error('Error updating candidate:', error);
-      });
+      this.CandidateServiceService.updateCandidateInformation(candidate.id, candidate).subscribe(
+        () => {},
+        () => {}
+      );
     }
   }
 
   editCandidate(id: string): void {
     if (id) {
       this.router.navigate([`/update-candidate/${id}`]);
-    } else {
-      console.error('Candidate ID is undefined or empty');
     }
   }
 
