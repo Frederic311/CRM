@@ -93,8 +93,19 @@ public class JwtService {
     }
 
     public String extractUserRole(String token) {
-        List<String> roles = extractClaim(token, claims -> claims.get("authorities", List.class));
-        return roles != null && !roles.isEmpty() ? roles.get(0) : null;
+        List<?> roles = extractClaim(token, claims -> claims.get("authorities", List.class));
+        if (roles == null || roles.isEmpty()) {
+            return null;
+        }
+
+        // Prefer ADMIN when present because some tokens include multiple authorities.
+        for (Object role : roles) {
+            if ("ADMIN".equals(String.valueOf(role))) {
+                return "ADMIN";
+            }
+        }
+
+        return String.valueOf(roles.get(0));
     }
 
 

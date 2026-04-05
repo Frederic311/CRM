@@ -1,11 +1,12 @@
 spring:
+  config:
+    import: "optional:configserver:http://localhost:8088,optional:file:.env[.properties],optional:file:../../.env[.properties]"
+
   application:
     name: event-service
-    config:
-      import: "optional:configserver:http://localhost:8088"
 
   datasource:
-    url: jdbc:mysql://localhost:3306/event_system?maxAllowedPacket=16777216
+    url: jdbc:mysql://localhost:3306/event_system?createDatabaseIfNotExist=true&maxAllowedPacket=16777216
     username: ${DB_USERNAME:root}
     password: ${DB_PASSWORD}
   jpa:
