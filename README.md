@@ -1,41 +1,73 @@
-
-<h2>✨Customer Relation System✨
-
+# Customer Relation System
 
 ## Stack
 
-<!-- Author's badge style -->
 ![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)
 ![Angular](https://img.shields.io/badge/angular-DD0031.svg?style=for-the-badge&logo=angular&logoColor=white)
 ![Java](https://img.shields.io/badge/java-007396.svg?style=for-the-badge&logo=java&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/spring_boot-6DB33F.svg?style=for-the-badge&logo=springboot&logoColor=white)
 ![Docker](https://img.shields.io/badge/docker-2496ED.svg?style=for-the-badge&logo=docker&logoColor=white)
 ![Maven](https://img.shields.io/badge/maven-C71A36.svg?style=for-the-badge&logo=apachemaven&logoColor=white)
-![GitLab CI](https://img.shields.io/badge/GitLab_CI-FCA121.svg?style=for-the-badge&logo=gitlab&logoColor=white)
 
 ## Description
 
-CRM – Gestions des candidatures étudiantes
+Application CRM pour la gestion des candidatures et du suivi admission, en architecture microservices.
 
-Développement d’une solution CRM modulaire en architecture microservices pour gérer le processus d’admission :
+## Structure
 
-- Angular (web) pour l’administration des dossiers.
-- Backend Spring Boot avec base de données MySQL.
-- Conteneurisation via Docker, intégration continue avec GitLab CI/CD.
+- `CRM_Backend/` : microservices Spring Boot
+- `Front/CRM/` : frontend Angular
+- `uploads/` : fichiers uploades
 
-## Structure du dépôt
+## Lancement rapide (local)
 
-- `CRM_Backend/` – microservices backend (auth-service, student management, task management, notification, service discovery, api gateway, ...)
-- `Front/CRM/` – application Angular (UI)
-- `uploads/` – fichiers et ressources uploadées
+### Backend
 
-## Notes
+Depuis chaque microservice dans `CRM_Backend/` :
 
-- Les fichiers de configuration pour les profils (ex: `application-dev.yml`) contiennent les paramètres de connexion à la base de données et les propriétés de Spring Boot.
-- Swagger UI est exposé pour chaque microservice (ex: `http://localhost:8080/api/v1/swagger-ui/index.html` pour le service `auth-service` si démarré sur le port 8080).
+```bash
+./mvnw spring-boot:run
+```
 
+Sous Windows :
 
----
+```powershell
+.\mvnw.cmd spring-boot:run
+```
+
+### Frontend
+
+Dans `Front/CRM/` :
+
+```bash
+npm install
+npm start
+```
+
+## Tests
+
+Exemple pour lancer les tests d'un service :
+
+```powershell
+cd CRM_Backend\auth-service
+.\mvnw.cmd test
+```
+
+## Docker
+
+Le projet contient :
+
+- un `Dockerfile` dans chaque microservice backend
+- un `Dockerfile` pour le frontend Angular
+- un fichier `docker-compose.yml` a la racine du projet
+
+## Swagger
+
+Swagger est expose par microservice (pas de Swagger global unique via gateway actuellement).
+
+Exemple auth-service :
+
+`http://localhost:8080/api/v1/swagger-ui/index.html`
 
 
 
