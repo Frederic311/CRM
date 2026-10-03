@@ -53,7 +53,13 @@ application:
       expiration: 86400000
   mailing:
     frontend:
-      activation-url: http://localhost:4200/activate-account
+      # Both keys are declared here rather than left to application-dev.yml,
+      # which is not loaded under the "test" profile: without them the context
+      # cannot start. The values match the defaults in application-dev.yml, and
+      # AuthApi1ApplicationTests.bothMailedUrlsAreReadFromConfiguration is what
+      # keeps the two from drifting apart again.
+      activation-url: http://localhost:4200/login
+      reset-password-url: http://localhost:4200/forget-password
   bootstrap:
     admin:
       # No account is created during the tests. Seeding an administrator with a

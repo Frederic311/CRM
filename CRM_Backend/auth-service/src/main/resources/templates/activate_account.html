@@ -52,6 +52,13 @@
     <p>Welcome to the platform!</p>
     <p>Your temporary password is: <strong><span th:text="${temporaryPassword}"></span></strong></p>
     <p>Please use this password to log in and create your own password.</p>
+    <p>
+        <!--
+          confirmationUrl was passed to the template engine on every call but
+          nothing referenced it, so the mail never said where to sign in.
+        -->
+        <a th:href="${confirmationUrl}" th:text="${confirmationUrl}">Sign in</a>
+    </p>
     <p>Thank you!</p>
 
 
