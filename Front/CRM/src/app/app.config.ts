@@ -8,13 +8,12 @@ import { authInterceptor } from './interceptors/auth/auth.interceptor';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), 
-              provideRouter(routes), 
-              provideAnimationsAsync(), 
+  providers: [provideZoneChangeDetection({ eventCoalescing: true }),
+              provideRouter(routes),
+              provideAnimationsAsync(),
               provideHttpClient(
                 withInterceptors([authInterceptor]),
-              ), 
-              provideAnimationsAsync(),
-              ConfirmationService, 
+              ),
+              ConfirmationService,
               MessageService]
 };
