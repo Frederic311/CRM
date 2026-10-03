@@ -2,29 +2,60 @@ spring:
   application:
     name: user-service
 
-  cloud:
-    discovery:
-      client:
-        simple:
-          eureka:
-            enabled: true
-            serviceUrl: http://localhost:8761/eureka/
-
-  profiles:
-    active: dev
-
   servlet:
     multipart:
       max-file-size: 50MB          # Maximum size for individual file uploads
       max-request-size: 100MB      # Maximum request size (for multiple file uploads)
 
-  # File storage properties
-  file:
-    upload-dir: src/main/resources/static/images # Directory to save uploaded files
-
-springdoc:
-  default-produces-media-type: application/json
+  # Activates the "dev" profile only when no profile is requested. Local runs
+  # therefore keep working unchanged, while SPRING_PROFILES_ACTIVE=prod in a
+  # container or a pod selects application-prod.yml. Pinning
+  # spring.profiles.active here would make the prod profile unreachable.
+  profiles:
+    default: dev
 
 server:
   servlet:
     context-path: /api/v1/
+
+springdoc:
+  default-produces-media-type: application/json
+
+# File storage.
+#
+# This block belongs at the root, not under "spring". It used to sit under
+# spring: which produced the key spring.file.upload-dir, while
+# FileStorageConfig reads @ConfigurationProperties(prefix = "file"), so
+# uploadDir was always null.
+#
+# The default is a development path. Override FILE_UPLOAD_DIR with a mounted
+# volume in any containerised environment: the default path does not exist in
+# the runtime image, where /app contains only the jar.
+file:
+  upload-dir: ${FILE_UPLOAD_DIR:src/main/resources/static/images}
+
+application:
+  security:
+    jwt:
+      # Must be Base64 and decode to at least 32 bytes, because the HMAC-SHA
+      # signature used to sign the tokens rejects weaker keys. The previous
+      # "change-me-in-env" default was not valid Base64, so decoding it threw.
+      #
+      # This default is for local development only. Every deployed environment
+      # must provide its own value through JWT_SECRET_KEY.
+      secret-key: ${JWT_SECRET_KEY:AasC/DCevWRDibxpDg4rCUcIRPeqq0qdigWfOSE8MiU=}
+      # Token lifetime in milliseconds. Unchanged from the previous hardcoded
+      # value, now overridable. 8640000 ms is 2 h 24 min.
+      expiration: ${JWT_EXPIRATION_MS:8640000}
+  mailing:
+    frontend:
+      activation-url: ${ACTIVATION_URL:http://localhost:4200/activate-account}
+
+  # Seeds the USER and ADMIN roles, and optionally one administrator.
+  # Off by default so no environment ever gets a known credential unless it
+  # explicitly asks for one.
+  bootstrap:
+    admin:
+      enabled: ${BOOTSTRAP_ADMIN_ENABLED:false}
+      email: ${BOOTSTRAP_ADMIN_EMAIL:}
+      password: ${BOOTSTRAP_ADMIN_PASSWORD:}

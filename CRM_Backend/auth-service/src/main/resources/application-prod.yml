@@ -1,0 +1,84 @@
+# Production profile, used by the Docker image and the Kubernetes deployment.
+#
+# Every host, credential and secret is read from the environment. Nothing here
+# falls back to localhost, because inside a container or a pod "localhost" is
+# the service itself.
+#
+# Activate with SPRING_PROFILES_ACTIVE=prod. The values marked required have no
+# default on purpose: starting with a placeholder credential would be worse than
+# refusing to start.
+spring:
+  datasource:
+    url: jdbc:mysql://${DB_HOST}:${DB_PORT:3306}/${DB_NAME:authdb}?createDatabaseIfNotExist=true
+    username: ${DB_USERNAME:user-service}
+    # Required. Left without a default so a missing value fails at startup.
+    password: ${DB_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      # Sized for a container. Exceeding the pool exhausts the connections
+      # available on the database server.
+      maximum-pool-size: ${DB_POOL_MAX_SIZE:10}
+      minimum-idle: ${DB_POOL_MIN_IDLE:2}
+      connection-timeout: 10000
+      max-lifetime: 1200000
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    open-in-view: false
+
+  eureka:
+    client:
+      service-url:
+        defaultZone: ${EUREKA_SERVICE_URL}
+      instance:
+        prefer-ip-address: true
+        leaseRenewalIntervalInSeconds: 30
+        leaseExpirationDurationInSeconds: 90
+      registration:
+        enabled: true
+
+  mail:
+    host: ${MAIL_HOST}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail.smtp.ssl.trust: ${MAIL_HOST}
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+      mail.smtp.connectiontimeout: 5000
+      mail.smtp.timeout: 3000
+      mail.smtp.writetimeout: 5000
+
+server:
+  # Lets the container be terminated gracefully instead of on the first request
+  # that arrives after the orchestrator has already started killing the pod.
+  shutdown: graceful
+  tomcat:
+    threads:
+      max: ${TOMCAT_MAX_THREADS:200}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: never
+  health:
+    # /actuator/health reports UP only once the database answers, which is what
+    # the Docker HEALTHCHECK and the Kubernetes readiness probe rely on.
+    db:
+      enabled: true
+
+logging:
+  level:
+    root: INFO
+    org.hibernate.SQL: WARN
+    # No org.hibernate.type: TRACE here. It prints parameter values, and in this
+    # application those include BCrypt hashes and activation tokens.

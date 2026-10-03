@@ -1,13 +1,17 @@
+# Local development profile.
+#
+# Activated by default when no profile is requested (see spring.profiles.default
+# in application.yml). It points at a MySQL and an Eureka running on the
+# developer machine, so none of these hosts may be relied on elsewhere.
 spring:
   config:
     import: optional:file:.env[.properties],optional:file:../../.env[.properties]
 
   datasource:
-    url: jdbc:mysql://localhost:3306/authdb?createDatabaseIfNotExist=true
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:authdb}?createDatabaseIfNotExist=true
     username: ${DB_USERNAME:root}
-    password: ${DB_PASSWORD}
+    password: ${DB_PASSWORD:}
     driver-class-name: com.mysql.cj.jdbc.Driver
-
 
   jpa:
     hibernate:
@@ -17,17 +21,10 @@ spring:
   flyway:
     enabled: false
 
-  servlet:
-    multipart:
-      max-file-size: 50MB
-      max-request-size: 50MB
-
-
-
   eureka:
     client:
       service-url:
-        defaultZone: http://localhost:8761/eureka/
+        defaultZone: http://${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka/
       instance:
         prefer-ip-address: true
         leaseRenewalIntervalInSeconds: 30
@@ -35,27 +32,11 @@ spring:
       registration:
         enabled: true
 
-
-
-
-  #  mail:
-  #    host: localhost
-  #    port: 1025
-  #    username: kamdem
-  #    password: 1234
-  #    properties:
-  #      mail.smtp.ssl.trust: "*"
-  #      mail.smtp.auth: true
-  #      mail.smtp.starttls.enable: true
-  #      mail.smtp.connectiontimeout: 5000
-  #      mail.smtp.timeout: 3000
-  #      mail.smtp.writetimeout: 5000
-
   mail:
     host: smtp.gmail.com
     port: 587
-    username: ${MAIL_USERNAME}
-    password: ${MAIL_PASSWORD}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
     properties:
       mail.smtp.ssl.trust: smtp.gmail.com
       mail.smtp.auth: true
@@ -64,19 +45,9 @@ spring:
       mail.smtp.timeout: 3000
       mail.smtp.writetimeout: 5000
 
-
-
 logging:
   level:
     org.hibernate.SQL: DEBUG
+    # TRACE prints bound parameter values, which for this application includes
+    # BCrypt password hashes and activation tokens. Do not copy this to prod.
     org.hibernate.type: TRACE
-
-application:
-  security:
-    jwt:
-      secret-key: ${JWT_SECRET_KEY:change-me-in-env}
-      expiration: 8640000
-  mailing:
-    frontend:
-      activation-url : http://localhost:4200/avtivate-account
-      resetUrl : http://localhost:4200/resertUrl

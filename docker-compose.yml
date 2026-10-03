@@ -1,4 +1,15 @@
-version: '3.8'
+# ─────────────────────────────────────────────────────────────────────────────
+# Every variable below uses the ${VAR:-default} form on purpose.
+#
+# With a bare ${VAR}, Compose substitutes an empty string when the variable is
+# unset, and an empty value overrides whatever default the application declares.
+# That is how JWT_SECRET_KEY used to reach the container as "" and turn the
+# first login into a WeakKeyException.
+#
+# Required values have no default, so an unset variable fails here with a clear
+# message instead of failing later inside a service.
+# See .env.example for the full list.
+# ─────────────────────────────────────────────────────────────────────────────
 
 services:
 
@@ -8,7 +19,7 @@ services:
     container_name: crm-mysql
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD must be set in .env - see .env.example}
       MYSQL_ROOT_HOST: '%'
     ports:
       - "3306:3306"
@@ -49,13 +60,18 @@ services:
     ports:
       - "8080:8080"
     environment:
+      SPRING_PROFILES_ACTIVE: prod
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/authdb?createDatabaseIfNotExist=true
-      SPRING_DATASOURCE_USERNAME: ${DB_USERNAME:-root}
-      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
+      SPRING_DATASOURCE_USERNAME: ${DB_USERNAME:-user-service}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD must be set in .env - see .env.example}
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://service-discovery:8761/eureka/
-      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
-      MAIL_USERNAME: ${MAIL_USERNAME}
-      MAIL_PASSWORD: ${MAIL_PASSWORD}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:?JWT_SECRET_KEY must be set in .env - generate one with node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"}
+      FILE_UPLOAD_DIR: /data/uploads
+      MAIL_HOST: ${MAIL_HOST:-smtp.gmail.com}
+      MAIL_PORT: ${MAIL_PORT:-587}
+      MAIL_USERNAME: ${MAIL_USERNAME:?MAIL_USERNAME must be set in .env - see .env.example}
+      MAIL_PASSWORD: ${MAIL_PASSWORD:?MAIL_PASSWORD must be set in .env - see .env.example}
+      EUREKA_SERVICE_URL: http://service-discovery:8761/eureka/
     depends_on:
       mysql:
         condition: service_healthy
@@ -74,11 +90,16 @@ services:
       - "8082:8082"
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/candidate?createDatabaseIfNotExist=true&maxAllowedPacket=16777216
-      SPRING_DATASOURCE_USERNAME: ${DB_USERNAME:-root}
-      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
+      SPRING_DATASOURCE_USERNAME: ${DB_USERNAME:-user-service}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD must be set in .env - see .env.example}
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://service-discovery:8761/eureka/
-      SPRING_MAIL_USERNAME: ${MAIL_USERNAME}
-      SPRING_MAIL_PASSWORD: ${MAIL_PASSWORD}
+      # DocumentService writes to this directory. Without a volume the uploads
+      # are lost whenever the container is recreated.
+      UPLOAD_DIR: /data/uploads
+      SPRING_MAIL_USERNAME: ${MAIL_USERNAME:?MAIL_USERNAME must be set in .env - see .env.example}
+      SPRING_MAIL_PASSWORD: ${MAIL_PASSWORD:?MAIL_PASSWORD must be set in .env - see .env.example}
+    volumes:
+      - uploads-data:/data/uploads
     depends_on:
       mysql:
         condition: service_healthy
@@ -97,8 +118,8 @@ services:
       - "8084:8084"
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/task?createDatabaseIfNotExist=true
-      SPRING_DATASOURCE_USERNAME: ${DB_USERNAME:-root}
-      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
+      SPRING_DATASOURCE_USERNAME: ${DB_USERNAME:-user-service}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD must be set in .env - see .env.example}
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://service-discovery:8761/eureka/
     depends_on:
       mysql:
@@ -118,13 +139,16 @@ services:
       - "8085:8085"
     environment:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://service-discovery:8761/eureka/
-      SPRING_MAIL_HOST: smtp.gmail.com
-      SPRING_MAIL_PORT: 587
-      SPRING_MAIL_USERNAME: ${MAIL_USERNAME}
-      SPRING_MAIL_PASSWORD: ${MAIL_PASSWORD}
-      TWILIO_ACCOUNT_SID: ${TWILIO_ACCOUNT_SID}
-      TWILIO_AUTH_TOKEN: ${TWILIO_AUTH_TOKEN}
-      TWILIO_PHONE_NUMBER: ${TWILIO_PHONE_NUMBER}
+      SPRING_MAIL_HOST: ${MAIL_HOST:-smtp.gmail.com}
+      SPRING_MAIL_PORT: ${MAIL_PORT:-587}
+      SPRING_MAIL_USERNAME: ${MAIL_USERNAME:?MAIL_USERNAME must be set in .env - see .env.example}
+      SPRING_MAIL_PASSWORD: ${MAIL_PASSWORD:?MAIL_PASSWORD must be set in .env - see .env.example}
+      # Twilio is optional. Its client throws from @PostConstruct when the
+      # account SID is missing, which stops the service from starting, so an
+      # unset value is tolerated instead of injected as an empty string.
+      TWILIO_ACCOUNT_SID: ${TWILIO_ACCOUNT_SID:-}
+      TWILIO_AUTH_TOKEN: ${TWILIO_AUTH_TOKEN:-}
+      TWILIO_PHONE_NUMBER: ${TWILIO_PHONE_NUMBER:-}
     depends_on:
       service-discovery:
         condition: service_healthy
@@ -141,8 +165,8 @@ services:
       - "8089:8089"
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/event_system?createDatabaseIfNotExist=true&maxAllowedPacket=16777216
-      SPRING_DATASOURCE_USERNAME: ${DB_USERNAME:-root}
-      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
+      SPRING_DATASOURCE_USERNAME: ${DB_USERNAME:-user-service}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD must be set in .env - see .env.example}
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://service-discovery:8761/eureka/
     depends_on:
       mysql:
@@ -188,3 +212,4 @@ networks:
 
 volumes:
   mysql-data:
+  uploads-data:
