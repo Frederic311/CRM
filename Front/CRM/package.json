@@ -23,7 +23,6 @@
     "@fontsource/inter": "^5.1.0",
     "@syncfusion/ej2-angular-schedule": "^27.2.5",
     "chart.js": "^4.4.6",
-    "crm": "file:",
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.2",
     "primeflex": "^3.3.1",
