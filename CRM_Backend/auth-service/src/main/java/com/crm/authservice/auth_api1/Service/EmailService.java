@@ -35,7 +35,17 @@ public class EmailService {
             String subject,
             String temporaryPassword  // Added temporaryPassword here
     ) throws MessagingException {
-        String templateName = (emailTemplate != null) ? emailTemplate.name() : "confirm-email";
+        // getName(), not name(): name() returns the constant name, while the
+        // field is what matches the Thymeleaf file name. Thymeleaf resolves
+        // classpath:/templates/<name>.html, and a mismatch raises a
+        // TemplateInputException from inside this @Async void method, where
+        // nobody observes it. The mail is then silently never sent.
+        //
+        // The fallback is a real template: "confirm-email" did not exist, so a
+        // null enum failed the same way.
+        String templateName = (emailTemplate != null)
+                ? emailTemplate.getName()
+                : EmailTemplateName.ACTIVATE_ACCOUNT.getName();
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(
                 mimeMessage,
