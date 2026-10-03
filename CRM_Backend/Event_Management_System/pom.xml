@@ -81,6 +81,17 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!--
+            In-memory database for the contextLoads() smoke tests. They only check
+            that the Spring context wires up; requiring a live MySQL on
+            localhost:3306 made them pass only on the machine where they were
+            written. Tests needing a real MySQL belong to the integration phase.
+        -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
