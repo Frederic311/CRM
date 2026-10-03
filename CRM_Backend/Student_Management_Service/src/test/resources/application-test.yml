@@ -1,0 +1,42 @@
+spring:
+  datasource:
+    # In-memory database for the contextLoads() smoke tests. MySQL compatibility
+    # mode so the column definitions Hibernate generates stay close to the ones
+    # the real database produces.
+    url: jdbc:h2:mem:crm-test;MODE=MySQL;DATABASE_TO_LOWER=TRUE;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    database-platform: org.hibernate.dialect.H2Dialect
+
+  cloud:
+    discovery:
+      enabled: false
+    service-registry:
+      auto-registration:
+        enabled: false
+
+  eureka:
+    client:
+      # A test has no reason to contact a registry, and the retry loop a failed
+      # registration produces is pure noise in the output.
+      enabled: false
+      register-with-eureka: false
+      fetch-registry: false
+
+  mail:
+    host: localhost
+    port: 3025
+    username: test
+    password: test
+
+logging:
+  level:
+    root: WARN
+    org.hibernate.SQL: WARN
+    org.hibernate.orm.deprecation: ERROR
