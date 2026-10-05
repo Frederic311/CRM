@@ -63,6 +63,11 @@ public class Candidate{
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "education_detail_id")
     private EducationDetails educationDetail;
+    /**
+     * Owning side of the relation. ProfilePhoto keeps a back reference to this
+     * candidate and ignores it when serializing, which is what stops
+     * candidate -> photo -> candidate from recursing.
+     */
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "profile_image_id")
     private ProfilePhoto profilePhoto;
