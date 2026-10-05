@@ -122,6 +122,25 @@ class EmailServiceTest {
         assertThat(templateFileNames()).contains(resolver.requested.get(0) + ".html");
     }
 
+    @ParameterizedTest
+    @EnumSource(value = EmailTemplateName.class, names = {"ACTIVATE_ACCOUNT", "RESET_PASSWORD"})
+    @DisplayName("the url sent with the email is rendered, so the mail is actionable")
+    void theUrlSentWithTheEmailIsRendered(EmailTemplateName template) throws Exception {
+        emailService.sendEmail("to@example.com", "ada", template, CONFIRMATION_URL, "123456", "subject", "secret");
+
+        assertThat(allText(mimeMessage)).contains(CONFIRMATION_URL);
+    }
+
+    @Test
+    @DisplayName("the confirmation mail, which is sent without a url, renders no link")
+    void theConfirmationMailRendersNoLink() throws Exception {
+        emailService.sendEmail("to@example.com", "ada", EmailTemplateName.PASSWORD_RESET_CONFIRMATION,
+                null, null, "subject", "secret");
+
+        assertThat(resolver.requested).containsExactly(EmailTemplateName.PASSWORD_RESET_CONFIRMATION.getName());
+        assertThat(allText(mimeMessage)).doesNotContain("null");
+    }
+
     @Test
     @DisplayName("the context reaches the rendered body")
     void theContextReachesTheRenderedBody() throws Exception {

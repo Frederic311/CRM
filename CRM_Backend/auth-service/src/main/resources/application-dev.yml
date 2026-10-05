@@ -78,5 +78,16 @@ application:
       expiration: 8640000
   mailing:
     frontend:
-      activation-url : http://localhost:4200/avtivate-account
-      resetUrl : http://localhost:4200/resertUrl
+      # Where the links in the emails point. Both defaults have to match a
+      # route that Front/CRM/src/app/app.routes.ts actually declares. That file
+      # ends with a catch-all redirecting to the login page, so a wrong path
+      # sends the reader to the login screen with no error at all, which is why
+      # "/avtivate-account" and "/resertUrl" went unnoticed.
+      #
+      # The activation mail delivers a temporary password, so signing in is the
+      # next step. A deployment that has a real activation page should point
+      # this elsewhere.
+      activation-url: ${ACTIVATION_URL:http://localhost:4200/login}
+      # The reset mail carries a token that has to be entered on the
+      # forget-password page, the only route that accepts one.
+      reset-password-url: ${RESET_PASSWORD_URL:http://localhost:4200/forget-password}
