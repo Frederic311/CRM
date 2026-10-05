@@ -512,7 +512,7 @@ public ResponseEntity<Map<String, String>> logout(@RequestHeader(value = "Author
     }
 
     // Delete profile photo by candidate ID (Delete operation)
-    @DeleteMapping("/delete")
+    @DeleteMapping("/{userId}/delete")
     public ResponseEntity<String> deleteProfilePhoto(@PathVariable Long userId) {
         try {
             profilePhotoService.deleteProfilePhoto(userId);

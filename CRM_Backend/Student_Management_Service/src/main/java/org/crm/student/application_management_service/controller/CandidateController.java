@@ -137,7 +137,7 @@ public class CandidateController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
-    @DeleteMapping("/delete")
+    @DeleteMapping("/{candidateId}/delete")
     public ResponseEntity<String> deleteProfilePhoto(@PathVariable Long candidateId) {
         try {
             profilePhotoService.deleteProfilePhoto(candidateId);

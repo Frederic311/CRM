@@ -87,6 +87,17 @@
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!--
+            In-memory database for the contextLoads() smoke test. It only checks
+            that the Spring context wires up; requiring a live MySQL on
+            localhost:3306 made it pass only on the machine where it was
+            written. Tests needing a real MySQL belong to the integration phase.
+        -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-api</artifactId>

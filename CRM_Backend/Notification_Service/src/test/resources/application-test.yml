@@ -1,0 +1,33 @@
+spring:
+  cloud:
+    discovery:
+      enabled: false
+    service-registry:
+      auto-registration:
+        enabled: false
+
+  eureka:
+    client:
+      enabled: false
+      register-with-eureka: false
+      fetch-registry: false
+
+  mail:
+    host: localhost
+    port: 3025
+    username: test
+    password: test
+
+  twilio:
+    # Placeholder values. The application.yml declares these without a default,
+    # so an unset variable makes the placeholder unresolvable and the context
+    # fails to start. Twilio.init only stores the credentials without calling
+    # the API, so the shape of the value is all that matters here.
+    accountSid: AC00000000000000000000000000000000
+    authToken: test-auth-token
+    phoneNumber: "+10000000000"
+
+logging:
+  level:
+    root: WARN
+    org.hibernate.orm.deprecation: ERROR
